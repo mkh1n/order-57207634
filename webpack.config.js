@@ -10,9 +10,13 @@ const JavaScriptObfuscator = require('javascript-obfuscator');
 class DomObfuscatorPlugin {
   constructor(options = {}) {
     this.options = options;
+    this.classMap = new Map();
+    this.idMap = new Map();
+    this.counter = 0;
   }
   
   apply(compiler) {
+    // Обрабатываем HTML
     compiler.hooks.emit.tap('DomObfuscatorPlugin', (compilation) => {
       Object.keys(compilation.assets).forEach((filename) => {
         if (filename.endsWith('.html')) {
@@ -37,35 +41,56 @@ class DomObfuscatorPlugin {
         }
       });
     });
+
+    // Обрабатываем CSS - синхронизируем имена классов
+    compiler.hooks.emit.tap('DomObfuscatorPlugin', (compilation) => {
+      Object.keys(compilation.assets).forEach((filename) => {
+        if (filename.endsWith('.css')) {
+          let content = compilation.assets[filename].source();
+          
+          // Заменяем классы в CSS
+          content = this.obfuscateCssClasses(content);
+          
+          compilation.assets[filename] = {
+            source: () => content,
+            size: () => content.length
+          };
+        }
+      });
+    });
   }
   
   obfuscateClasses(html) {
-    const classMap = new Map();
-    let classCounter = 0;
-    
     return html.replace(/class="([^"]*)"/g, (match, classes) => {
       const newClasses = classes.split(/\s+/)
         .filter(className => className.trim())
         .map(className => {
-          if (!classMap.has(className)) {
-            classMap.set(className, `c${this.generateHash(className + classCounter++)}`);
+          if (!this.classMap.has(className)) {
+            this.classMap.set(className, `c${this.generateHash(className + this.counter++)}`);
           }
-          return classMap.get(className);
+          return this.classMap.get(className);
         })
         .join(' ');
       return `class="${newClasses}"`;
     });
   }
   
+  obfuscateCssClasses(css) {
+    let result = css;
+    this.classMap.forEach((newClass, oldClass) => {
+      // Заменяем .oldClass на .newClass в CSS
+      const regex = new RegExp(`\\.${this.escapeRegExp(oldClass)}(?![a-zA-Z0-9_-])`, 'g');
+      result = result.replace(regex, `.${newClass}`);
+    });
+    return result;
+  }
+  
   obfuscateIds(html) {
-    const idMap = new Map();
-    let idCounter = 0;
-    
     return html.replace(/id="([^"]*)"/g, (match, id) => {
-      if (!idMap.has(id)) {
-        idMap.set(id, `i${this.generateHash(id + idCounter++)}`);
+      if (!this.idMap.has(id)) {
+        this.idMap.set(id, `i${this.generateHash(id + this.counter++)}`);
       }
-      return `id="${idMap.get(id)}"`;
+      return `id="${this.idMap.get(id)}"`;
     });
   }
   
@@ -97,6 +122,10 @@ class DomObfuscatorPlugin {
       hash = hash & hash;
     }
     return Math.abs(hash).toString(36).substr(0, 8);
+  }
+
+  escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
 }
 
@@ -180,7 +209,7 @@ module.exports = {
         }
       },
       
-      // Обработка CSS с шифрованием классов
+      // Обработка CSS - БЕЗ CSS Modules для глобальных стилей
       {
         test: /\.css$/,
         use: [
@@ -188,12 +217,9 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              modules: {
-                mode: 'local',
-                localIdentName: '[hash:base64:8]', // Шифруем классы: .header -> .aBcD1234
-                exportLocalsConvention: 'camelCase',
-                namedExport: false,
-              }
+              // Убираем modules чтобы классы оставались глобальными
+              modules: false,
+              sourceMap: false
             }
           }
         ]
@@ -284,22 +310,10 @@ module.exports = {
     
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        keepClosingSlash: true,
-        minifyJS: true,
-        minifyCSS: true,
-        minifyURLs: true,
-      }
+      minify: false // Отключаем встроенную минификацию, т.к. используем свой плагин
     }),
     
-    // Плагин для шифрования DOM и классов
+    // Плагин для шифрования DOM и классов (должен быть после HtmlWebpackPlugin)
     new DomObfuscatorPlugin(),
     
     // Плагин для обфускации JavaScript
