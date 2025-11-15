@@ -2,6 +2,156 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const JavaScriptObfuscator = require('javascript-obfuscator');
+
+// Кастомный плагин для шифрования DOM и классов
+class DomObfuscatorPlugin {
+  constructor(options = {}) {
+    this.options = options;
+  }
+  
+  apply(compiler) {
+    compiler.hooks.emit.tap('DomObfuscatorPlugin', (compilation) => {
+      Object.keys(compilation.assets).forEach((filename) => {
+        if (filename.endsWith('.html')) {
+          let content = compilation.assets[filename].source();
+          
+          // Шифруем классы
+          content = this.obfuscateClasses(content);
+          
+          // Шифруем ID
+          content = this.obfuscateIds(content);
+          
+          // Шифруем data-атрибуты
+          content = this.obfuscateDataAttributes(content);
+          
+          // Минифицируем HTML структуру
+          content = this.minifyHtml(content);
+          
+          compilation.assets[filename] = {
+            source: () => content,
+            size: () => content.length
+          };
+        }
+      });
+    });
+  }
+  
+  obfuscateClasses(html) {
+    const classMap = new Map();
+    let classCounter = 0;
+    
+    return html.replace(/class="([^"]*)"/g, (match, classes) => {
+      const newClasses = classes.split(/\s+/)
+        .filter(className => className.trim())
+        .map(className => {
+          if (!classMap.has(className)) {
+            classMap.set(className, `c${this.generateHash(className + classCounter++)}`);
+          }
+          return classMap.get(className);
+        })
+        .join(' ');
+      return `class="${newClasses}"`;
+    });
+  }
+  
+  obfuscateIds(html) {
+    const idMap = new Map();
+    let idCounter = 0;
+    
+    return html.replace(/id="([^"]*)"/g, (match, id) => {
+      if (!idMap.has(id)) {
+        idMap.set(id, `i${this.generateHash(id + idCounter++)}`);
+      }
+      return `id="${idMap.get(id)}"`;
+    });
+  }
+  
+  obfuscateDataAttributes(html) {
+    return html.replace(/data-([a-zA-Z0-9-]+)="([^"]*)"/g, (match, attrName, value) => {
+      const obfuscatedName = `d${this.generateHash(attrName)}`;
+      return `data-${obfuscatedName}="${value}"`;
+    });
+  }
+  
+  minifyHtml(html) {
+    // Удаляем комментарии
+    html = html.replace(/<!--[\s\S]*?-->/g, '');
+    // Удаляем лишние пробелы
+    html = html.replace(/\s+/g, ' ');
+    html = html.replace(/>\s+</g, '><');
+    // Удаляем пробелы вокруг атрибутов
+    html = html.replace(/\s+>/g, '>');
+    html = html.replace(/>\s+/g, '>');
+    
+    return html.trim();
+  }
+  
+  generateHash(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash;
+    }
+    return Math.abs(hash).toString(36).substr(0, 8);
+  }
+}
+
+// Плагин для обфускации JavaScript
+class JSObfuscatorPlugin {
+  constructor(options = {}) {
+    this.options = options;
+  }
+  
+  apply(compiler) {
+    compiler.hooks.emit.tap('JSObfuscatorPlugin', (compilation) => {
+      Object.keys(compilation.assets).forEach((filename) => {
+        if (filename.endsWith('.js') && !filename.includes('runtime')) {
+          try {
+            const source = compilation.assets[filename].source();
+            const obfuscatedCode = JavaScriptObfuscator.obfuscate(source, {
+              compact: true,
+              controlFlowFlattening: true,
+              controlFlowFlatteningThreshold: 0.75,
+              deadCodeInjection: false,
+              debugProtection: false,
+              disableConsoleOutput: true,
+              identifierNamesGenerator: 'hexadecimal',
+              log: false,
+              numbersToExpressions: true,
+              renameGlobals: false,
+              selfDefending: true,
+              simplify: true,
+              splitStrings: true,
+              splitStringsChunkLength: 10,
+              stringArray: true,
+              stringArrayEncoding: ['rc4'],
+              stringArrayIndexShift: true,
+              stringArrayWrappersCount: 2,
+              stringArrayWrappersChainedCalls: true,
+              stringArrayWrappersParametersMaxCount: 4,
+              stringArrayWrappersType: 'function',
+              stringArrayThreshold: 0.75,
+              transformObjectKeys: true,
+              unicodeEscapeSequence: false,
+              ...this.options
+            });
+
+            compilation.assets[filename] = {
+              source: () => obfuscatedCode.getObfuscatedCode(),
+              size: () => obfuscatedCode.getObfuscatedCode().length
+            };
+          } catch (error) {
+            console.warn(`Ошибка обфускации ${filename}:`, error.message);
+          }
+        }
+      });
+    });
+  }
+}
 
 module.exports = {
   entry: './src/js/app.js',
@@ -10,45 +160,60 @@ module.exports = {
     path: path.resolve(__dirname, 'docs'),
     filename: 'js/[name].[contenthash].bundle.js',
     publicPath: './',
-    // Убрали assetModuleFilename, чтобы не создавать resource папку
+    chunkFilename: 'js/[name].[contenthash].chunk.js',
   },
   
   module: {
     rules: [
-      // Обработка JavaScript с Babel
       {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
+            presets: ['@babel/preset-env'],
+            plugins: [
+              // Удаляем console.log в production
+              ['transform-remove-console', { exclude: ['error', 'warn'] }]
+            ]
           }
         }
       },
       
-      // Обработка CSS
+      // Обработка CSS с шифрованием классов
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                mode: 'local',
+                localIdentName: '[hash:base64:8]', // Шифруем классы: .header -> .aBcD1234
+                exportLocalsConvention: 'camelCase',
+                namedExport: false,
+              }
+            }
+          }
+        ]
       },
 
-      // Обработка изображений
+      // Обработка изображений с короткими путями
       {
         test: /\.(png|jpg|jpeg|gif|svg|webp)$/,
         type: 'asset/resource',
         generator: {
-          // Теперь все идет в resources, а не resource
-          filename: 'resources/images/[hash][ext]'
+          filename: 'r/i/[hash][ext]' // Короткий путь resources/images -> r/i
         }
       },
       
-      // Обработка шрифтов
+      // Обработка шрифтов с короткими путями
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         type: 'asset/resource',
         generator: {
-          filename: 'resources/fonts/[hash][ext]'
+          filename: 'r/f/[hash][ext]' // Короткий путь resources/fonts -> r/f
         }
       },
       
@@ -122,16 +287,30 @@ module.exports = {
       minify: {
         removeComments: true,
         collapseWhitespace: true,
-        removeAttributeQuotes: true
+        removeAttributeQuotes: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
       }
     }),
     
-    // Копируем статические файлы ТОЛЬКО если они существуют
+    // Плагин для шифрования DOM и классов
+    new DomObfuscatorPlugin(),
+    
+    // Плагин для обфускации JavaScript
+    new JSObfuscatorPlugin(),
+    
+    // Копируем статические файлы
     new CopyWebpackPlugin({
       patterns: [
         {
           from: 'src/assets',
-          to: 'assets',
+          to: 'a', // assets -> a
           noErrorOnMissing: true,
           globOptions: {
             ignore: ['**/.DS_Store', '**/Thumbs.db']
@@ -139,7 +318,7 @@ module.exports = {
         },
         {
           from: 'src/resources',
-          to: 'resources',
+          to: 'r', // resources -> r
           noErrorOnMissing: true,
           globOptions: {
             ignore: ['**/.DS_Store', '**/Thumbs.db']
@@ -149,8 +328,72 @@ module.exports = {
     })
   ],
   
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          compress: {
+            drop_console: true, // Удаляем все console.log
+            drop_debugger: true,
+            pure_funcs: ['console.log', 'console.info'], // Удаляем конкретные функции
+          },
+          mangle: {
+            properties: {
+              regex: /^_/, // Шифруем свойства начинающиеся с _
+            },
+          },
+          output: {
+            comments: false, // Удаляем комментарии
+          },
+        },
+        extractComments: false,
+      }),
+      new CssMinimizerPlugin({
+        minimizerOptions: {
+          preset: [
+            'default',
+            {
+              discardComments: { removeAll: true }, // Удаляем комментарии из CSS
+            },
+          ],
+        },
+      }),
+    ],
+    
+    // Разделяем код для усложнения анализа
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+          enforce: true,
+        },
+        common: {
+          name: 'common',
+          minChunks: 2,
+          chunks: 'all',
+          enforce: true,
+        },
+      },
+    },
+    
+    // Шифруем имена чанков
+    chunkIds: 'deterministic',
+    moduleIds: 'deterministic',
+  },
+  
   resolve: {
-    extensions: ['.js', '.css', '.scss']
+    extensions: ['.js', '.css', '.scss'],
+    alias: {
+      // Создаем алиасы с короткими путями
+      '@': path.resolve(__dirname, 'src'),
+      '@styles': path.resolve(__dirname, 'src/styles'),
+      '@js': path.resolve(__dirname, 'src/js'),
+      '@assets': path.resolve(__dirname, 'src/assets'),
+    }
   },
   
   devServer: {
@@ -159,7 +402,10 @@ module.exports = {
     },
     port: 3000,
     open: true,
-    hot: true
+    hot: true,
+    client: {
+      logging: 'none', // Скрываем логи в dev режиме
+    }
   },
   
   performance: {
@@ -173,6 +419,11 @@ module.exports = {
     warningsFilter: [
       /asset size limit/,
       /entrypoint size limit/
-    ]
+    ],
+    // Минималистичный вывод
+    modules: false,
+    children: false,
+    chunks: false,
+    chunkModules: false
   }
 };
