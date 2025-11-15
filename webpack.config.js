@@ -7,7 +7,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const JavaScriptObfuscator = require('javascript-obfuscator');
 
-// Кастомный плагин для шифрования DOM и классов
+// Кастомный плагин для шифрования DOM и классов и исправления путей
 class DomObfuscatorPlugin {
   constructor(options = {}) {
     this.options = options;
@@ -43,7 +43,7 @@ class DomObfuscatorPlugin {
       });
     });
 
-    // Обрабатываем CSS - синхронизируем имена классов
+    // Обрабатываем CSS - синхронизируем имена классов и исправляем пути
     compiler.hooks.emit.tap('DomObfuscatorPlugin', (compilation) => {
       Object.keys(compilation.assets).forEach((filename) => {
         if (filename.endsWith('.css')) {
@@ -51,6 +51,9 @@ class DomObfuscatorPlugin {
           
           // Заменяем классы в CSS
           content = this.obfuscateCssClasses(content);
+          
+          // Исправляем пути к шрифтам и изображениям
+          content = this.fixCssPaths(content);
           
           compilation.assets[filename] = {
             source: () => content,
@@ -84,6 +87,25 @@ class DomObfuscatorPlugin {
       result = result.replace(regex, `.${newClass}`);
     });
     return result;
+  }
+  
+  fixCssPaths(css) {
+    // Исправляем пути к шрифтам
+    css = css.replace(/url\(['"]?\.\.\/resources\/fonts\/([^'")]*)['"]?\)/g, 'url(./r/f/$1)');
+    css = css.replace(/url\(['"]?\/resources\/fonts\/([^'")]*)['"]?\)/g, 'url(./r/f/$1)');
+    css = css.replace(/url\(['"]?resources\/fonts\/([^'")]*)['"]?\)/g, 'url(./r/f/$1)');
+    
+    // Исправляем пути к изображениям
+    css = css.replace(/url\(['"]?\.\.\/resources\/images\/([^'")]*)['"]?\)/g, 'url(./r/i/$1)');
+    css = css.replace(/url\(['"]?\/resources\/images\/([^'")]*)['"]?\)/g, 'url(./r/i/$1)');
+    css = css.replace(/url\(['"]?resources\/images\/([^'")]*)['"]?\)/g, 'url(./r/i/$1)');
+    
+    // Исправляем пути к assets
+    css = css.replace(/url\(['"]?\.\.\/assets\/([^'")]*)['"]?\)/g, 'url(./a/$1)');
+    css = css.replace(/url\(['"]?\/assets\/([^'")]*)['"]?\)/g, 'url(./a/$1)');
+    css = css.replace(/url\(['"]?assets\/([^'")]*)['"]?\)/g, 'url(./a/$1)');
+    
+    return css;
   }
   
   obfuscateIds(html) {
@@ -214,12 +236,18 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          MiniCssExtractPlugin.loader, // Вместо style-loader
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
               modules: false,
-              sourceMap: false
+              sourceMap: false,
+              url: {
+                filter: (url, resourcePath) => {
+                  // Разрешаем все URL, они будут исправлены в плагине
+                  return true;
+                },
+              },
             }
           }
         ]
@@ -230,7 +258,7 @@ module.exports = {
         test: /\.(png|jpg|jpeg|gif|svg|webp)$/,
         type: 'asset/resource',
         generator: {
-          filename: 'r/i/[hash][ext]' // Короткий путь resources/images -> r/i
+          filename: 'r/i/[hash][ext]'
         }
       },
       
@@ -239,7 +267,7 @@ module.exports = {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         type: 'asset/resource',
         generator: {
-          filename: 'r/f/[hash][ext]' // Короткий путь resources/fonts -> r/f
+          filename: 'r/f/[hash][ext]'
         }
       },
       
@@ -286,7 +314,7 @@ module.exports = {
                     if (fs.existsSync(absolutePath)) {
                       return true;
                     } else {
-                      console.log(`⚠️  Изображение не найдено, игнорируем: ${value}`);
+                      console.log(`⚠️  Файл не найден, игнорируем: ${value}`);
                       return false;
                     }
                   } catch (error) {
@@ -316,7 +344,7 @@ module.exports = {
     
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      minify: false // Отключаем встроенную минификацию, т.к. используем свой плагин
+      minify: false
     }),
     
     // Плагин для шифрования DOM и классов (должен быть после HtmlWebpackPlugin)
@@ -330,7 +358,7 @@ module.exports = {
       patterns: [
         {
           from: 'src/assets',
-          to: 'a', // assets -> a
+          to: 'a',
           noErrorOnMissing: true,
           globOptions: {
             ignore: ['**/.DS_Store', '**/Thumbs.db']
@@ -338,7 +366,7 @@ module.exports = {
         },
         {
           from: 'src/resources',
-          to: 'r', // resources -> r
+          to: 'r',
           noErrorOnMissing: true,
           globOptions: {
             ignore: ['**/.DS_Store', '**/Thumbs.db']
@@ -354,17 +382,17 @@ module.exports = {
       new TerserPlugin({
         terserOptions: {
           compress: {
-            drop_console: true, // Удаляем все console.log
+            drop_console: true,
             drop_debugger: true,
-            pure_funcs: ['console.log', 'console.info'], // Удаляем конкретные функции
+            pure_funcs: ['console.log', 'console.info'],
           },
           mangle: {
             properties: {
-              regex: /^_/, // Шифруем свойства начинающиеся с _
+              regex: /^_/,
             },
           },
           output: {
-            comments: false, // Удаляем комментарии
+            comments: false,
           },
         },
         extractComments: false,
@@ -374,14 +402,13 @@ module.exports = {
           preset: [
             'default',
             {
-              discardComments: { removeAll: true }, // Удаляем комментарии из CSS
+              discardComments: { removeAll: true },
             },
           ],
         },
       }),
     ],
     
-    // Разделяем код для усложнения анализа
     splitChunks: {
       chunks: 'all',
       cacheGroups: {
@@ -406,7 +433,6 @@ module.exports = {
       },
     },
     
-    // Шифруем имена чанков
     chunkIds: 'deterministic',
     moduleIds: 'deterministic',
   },
@@ -414,7 +440,6 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.css', '.scss'],
     alias: {
-      // Создаем алиасы с короткими путями
       '@': path.resolve(__dirname, 'src'),
       '@styles': path.resolve(__dirname, 'src/styles'),
       '@js': path.resolve(__dirname, 'src/js'),
@@ -430,7 +455,7 @@ module.exports = {
     open: true,
     hot: true,
     client: {
-      logging: 'none', // Скрываем логи в dev режиме
+      logging: 'none',
     }
   },
   
@@ -446,7 +471,6 @@ module.exports = {
       /asset size limit/,
       /entrypoint size limit/
     ],
-    // Минималистичный вывод
     modules: false,
     children: false,
     chunks: false,
