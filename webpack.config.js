@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const JavaScriptObfuscator = require('javascript-obfuscator');
 
 // Кастомный плагин для шифрования DOM и классов
@@ -209,15 +210,14 @@ module.exports = {
         }
       },
       
-      // Обработка CSS - БЕЗ CSS Modules для глобальных стилей
+      // Обработка CSS - используем MiniCssExtractPlugin для production
       {
         test: /\.css$/,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader, // Вместо style-loader
           {
             loader: 'css-loader',
             options: {
-              // Убираем modules чтобы классы оставались глобальными
               modules: false,
               sourceMap: false
             }
@@ -308,6 +308,12 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     
+    // Плагин для извлечения CSS в отдельные файлы
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[contenthash].css',
+      chunkFilename: 'css/[name].[contenthash].chunk.css'
+    }),
+    
     new HtmlWebpackPlugin({
       template: './src/index.html',
       minify: false // Отключаем встроенную минификацию, т.к. используем свой плагин
@@ -388,6 +394,12 @@ module.exports = {
         common: {
           name: 'common',
           minChunks: 2,
+          chunks: 'all',
+          enforce: true,
+        },
+        styles: {
+          name: 'styles',
+          test: /\.css$/,
           chunks: 'all',
           enforce: true,
         },
