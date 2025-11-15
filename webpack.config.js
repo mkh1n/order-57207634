@@ -9,7 +9,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'docs'),
     filename: 'js/[name].[contenthash].bundle.js',
-    publicPath: '/',
+    publicPath: './',
     // Убрали assetModuleFilename, чтобы не создавать resource папку
   },
   
