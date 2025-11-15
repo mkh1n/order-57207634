@@ -7,7 +7,7 @@ module.exports = {
   entry: './src/js/app.js',
   
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'docs'),
     filename: 'js/[name].[contenthash].bundle.js',
     publicPath: '/',
     // Убрали assetModuleFilename, чтобы не создавать resource папку
@@ -155,7 +155,7 @@ module.exports = {
   
   devServer: {
     static: {
-      directory: path.join(__dirname, 'dist')
+      directory: path.join(__dirname, 'docs')
     },
     port: 3000,
     open: true,
