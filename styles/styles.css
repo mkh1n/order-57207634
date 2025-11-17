@@ -279,8 +279,7 @@ position: relative;
     color: var(--color-text-light);
     font-weight: 400;
 }
-
-.main-nav li:first-child a {
+.main-nav a.active {
     color: var(--color-text-dark);
     font-weight: 600;
 }
@@ -1378,6 +1377,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .approach-section {
     padding: 60px 0;
+    padding-bottom: 120px;
 }
 
 .approach-section::after {
@@ -1446,12 +1446,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .card-small-col {
     padding: 0;
+        margin-bottom: 40px
+
 }
 
 .approach-card:nth-child(1) {
     grid-column: 1 / 4;
     grid-row: 1 / 3;
     padding: 100px 60px;
+    margin-bottom: 40px
 
 }
 .approach-card:nth-child(1) .approach-card-content{
@@ -1568,7 +1571,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .check-qr {
-    font-size: 28px;
+    font-size: 25px;
     font-weight: 400;
     color: #252944;
     opacity: 0.5;
@@ -2063,10 +2066,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .approach-card:nth-child(7) {
     grid-column: 2 / 4;
     grid-row: 4 / 9;
+    margin-bottom: 100px;
 }
 
 .approach-card:nth-child(7) .approach-card-content {
     padding: 50px;
+    margin-bottom: 15px;
 }
 
 .approach-card:nth-child(6) {
@@ -2991,11 +2996,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: 100%;
     overflow: auto;
     background-color: #0000004f;
-
 }
 
 .modal-content {
-   max-width: 1200px;
+    max-width: 1200px;
+     height: 1020px;
     position: relative;
     margin-left: auto;
     margin-right: auto;
@@ -3115,17 +3120,24 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .contact-form-section {
     padding: 60px;
     border-radius: 30px;
+        height: 100%;
+
 
 }
 
 .contact-form-wrapper {
     display: flex;
     gap: 55px;
-    align-items: flex-start;
+    align-items: stretch;
+    height: 100%;
+    min-height: 0;
+    justify-content: center;
 }
 
 .form-container {
-    max-width: 400px;
+    max-width: 450px;
+    flex: 1;
+     height: 100%;
 }
 
 .contact-title-accent {
@@ -3209,6 +3221,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 15px;
     min-height: 100px;
     resize: vertical;
+    width: -webkit-fill-available;
 }
 
 /* Для текстареи убираем иконку */
@@ -3218,8 +3231,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .submit-btn {
     width: 100%;
-
+    gap: 15px;
     transition: background-color 0.3s ease;
+    padding: 40px 110px;
+    font-size: 18px;
 }
 
 .submit-btn:hover {
@@ -3248,10 +3263,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    flex: 1;
 }
 
 .image-top {
     height: 25%;
+    flex-shrink: 0;
     /* 1/4 */
     min-height: 150px;
     background-color: white;
