@@ -3050,7 +3050,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .status-success {
-    color: #28a745;
+    color: var(--color-primary)
 }
 
 .status-error {
