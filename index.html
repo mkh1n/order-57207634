@@ -15,7 +15,6 @@
 
 <body>
     <img src="./resources/images/tape.png" alt="" id="hero-decoration-tape1">
-    <img src="./resources/images/table.png" alt="" id="hero-decoration-table">
 
     <header class="site-header" id="header">
         <div class="container header-container">
@@ -55,11 +54,12 @@
     </header>
 
     <section id="hero" class="hero-section">
-        <img src="./resources/images/bush.png" alt="" id="hero-decoration-bush1">
-        <img src="./resources/images/bush.png" alt="" id="hero-decoration-bush2">
+        
 
         <div class="container hero-container">
+
             <div class="hero-content">
+
                 <h1 class="hero-title">
                     <span class="hero-title-accent">Повышаем лояльность на 19%* в IT-компаниях</span>
                     через корпоративные <span class="hero-title-regular">ВАУ-подарки</span>
@@ -75,8 +75,13 @@
                 </a>
                 <p class="hero-footnote">* на основе анализа от Harvard Business Review и Shadow Breeze</p>
             </div>
-            <div class="hero-image-wrapper">
-                <img src="./resources/images/box.png" alt="">
+            <div class="table-container">
+                <img src="./resources/images/bush.png" alt="" id="hero-decoration-bush1">
+        <img src="./resources/images/bush.png" alt="" id="hero-decoration-bush2">
+                <img src="./resources/images/table.png" alt="" id="hero-decoration-table">
+                <div class="hero-image-wrapper">
+                    <img src="./resources/images/box.png" alt="">
+                </div>
             </div>
         </div>
         <div class="hero-bg-blur"></div>
@@ -1118,86 +1123,87 @@
     </footer>
 
     <div class="contact-form-section light-blue">
-            <div class="contact-form-wrapper">
-                <!-- Левая часть - форма -->
-                <div class="form-container">
-                    <div class="form-titles">
-<h2 class="form-title"><span class="contact-title-accent">Оставьте </span>свои<br>контактные данные,</h2>
+        <div class="contact-form-wrapper">
+            <!-- Левая часть - форма -->
+            <div class="form-container">
+                <div class="form-titles">
+                    <h2 class="form-title"><span class="contact-title-accent">Оставьте </span>свои<br>контактные данные,
+                    </h2>
                     <h3 class="form-subtitle">и мы свяжемся<br>с вами для уточнения
                         деталей</h3>
                     <p class="form-subsubtitle">Минимальный тираж от 50 шт</p>
 
-                    </div>
-                    
-                    <form class="contact-form">
-                        <!-- Поле имени -->
-                        <div class="form-group">
-                            <div class="input-with-icon">
-                                <span class="input-icon">
-                                    <img src="./resources/icons/contact-user.svg" alt="Имя">
-                                </span>
-                                <input type="text" class="form-input" placeholder="Имя" required>
-                            </div>
-                        </div>
-
-                        <!-- Поле телефона -->
-                        <div class="form-group">
-                            <div class="input-with-icon">
-                                <span class="input-icon">
-                                    <img src="./resources/icons/contact-phone.svg" alt="Телефон">
-                                </span>
-                                <input type="tel" class="form-input" placeholder="Телефон" required>
-                            </div>
-                        </div>
-
-                        <!-- Поле почты -->
-                        <div class="form-group">
-                            <div class="input-with-icon">
-                                <span class="input-icon">
-                                    <img src="./resources/icons/contact-email.svg" alt="Почта">
-                                </span>
-                                <input type="email" class="form-input" placeholder="Почта" required>
-                            </div>
-                        </div>
-
-                        <!-- Поле пожеланий -->
-                        <div class="form-group">
-                            <textarea class="form-input form-textarea" placeholder="Пожелания к заказу"></textarea>
-                        </div>
-
-                        <!-- Поле тиража -->
-                        <div class="form-group">
-                            <div class="input-with-icon">
-                                <span class="input-icon">
-                                    <img src="./resources/icons/contact-cart.svg" alt="Тираж">
-                                </span>
-                                <input type="text" class="form-input" placeholder="Укажите тираж" required>
-                            </div>
-                        </div>
-
-                        <!-- Кнопка отправки -->
-                        <button type="submit" class="submit-btn btn btn-primary">Отправить <img
-                                src="./resources/icons/finger-icon.svg" alt="" class="hero-cta-icon">
-                        </button>
-
-                        <!-- Текст соглашения -->
-                        <p class="agreement-text">
-                            Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь c
-                            политикой конфиденциальности
-                        </p>
-                    </form>
                 </div>
 
-                <!-- Правая часть - картинки -->
-                <div class="images-container">
-                    <div class="image-top">
-                        <img src="./resources/images/contact-form1.png" alt="Изображение 1">
+                <form class="contact-form">
+                    <!-- Поле имени -->
+                    <div class="form-group">
+                        <div class="input-with-icon">
+                            <span class="input-icon">
+                                <img src="./resources/icons/contact-user.svg" alt="Имя">
+                            </span>
+                            <input type="text" class="form-input" placeholder="Имя" required>
+                        </div>
                     </div>
-                    <div class="image-bottom">
-                        <img src="./resources/images/contact-form2.png" alt="Изображение 2">
+
+                    <!-- Поле телефона -->
+                    <div class="form-group">
+                        <div class="input-with-icon">
+                            <span class="input-icon">
+                                <img src="./resources/icons/contact-phone.svg" alt="Телефон">
+                            </span>
+                            <input type="tel" class="form-input" placeholder="Телефон" required>
+                        </div>
                     </div>
+
+                    <!-- Поле почты -->
+                    <div class="form-group">
+                        <div class="input-with-icon">
+                            <span class="input-icon">
+                                <img src="./resources/icons/contact-email.svg" alt="Почта">
+                            </span>
+                            <input type="email" class="form-input" placeholder="Почта" required>
+                        </div>
+                    </div>
+
+                    <!-- Поле пожеланий -->
+                    <div class="form-group">
+                        <textarea class="form-input form-textarea" placeholder="Пожелания к заказу"></textarea>
+                    </div>
+
+                    <!-- Поле тиража -->
+                    <div class="form-group">
+                        <div class="input-with-icon">
+                            <span class="input-icon">
+                                <img src="./resources/icons/contact-cart.svg" alt="Тираж">
+                            </span>
+                            <input type="text" class="form-input" placeholder="Укажите тираж" required>
+                        </div>
+                    </div>
+
+                    <!-- Кнопка отправки -->
+                    <button type="submit" class="submit-btn btn btn-primary">Отправить <img
+                            src="./resources/icons/finger-icon.svg" alt="" class="hero-cta-icon">
+                    </button>
+
+                    <!-- Текст соглашения -->
+                    <p class="agreement-text">
+                        Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь c
+                        политикой конфиденциальности
+                    </p>
+                </form>
+            </div>
+
+            <!-- Правая часть - картинки -->
+            <div class="images-container">
+                <div class="image-top">
+                    <img src="./resources/images/contact-form1.png" alt="Изображение 1">
+                </div>
+                <div class="image-bottom">
+                    <img src="./resources/images/contact-form2.png" alt="Изображение 2">
                 </div>
             </div>
+        </div>
     </div>
 </body>
 
