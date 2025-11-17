@@ -160,32 +160,6 @@
                         </div>
                     </div>
                     <form id="quizForm">
-
-                        <div class="quiz-step" data-step="6">
-                            <h3 class="quiz-question">Оставьте ваши контактные данные,</h3>
-                            <p>и мы отправим персональное
-                                КП с 5 вариантами
-                                подарков <span id="changable-present-quiz-word">под успешный реализ проекта</span> </p>
-
-                            <input type="text" class="quiz-input" name="user-name" placeholder="Ваше имя" required>
-                            <div class="error-message" id="nameError">Пожалуйста, введите ваше имя</div>
-
-                            <input type="tel" class="quiz-input" name="user-phone" placeholder="Номер телефона"
-                                required>
-                            <div class="error-message" id="phoneError">Пожалуйста, введите корректный номер телефона
-                            </div>
-
-                            <input type="email" class="quiz-input" name="user-email" placeholder="Электронная почта"
-                                required>
-                            <div class="error-message" id="emailError">Пожалуйста, введите корректный email</div>
-
-                            <div class="quiz-buttons">
-                                <button type="button" class="quiz-btn btn-secondary submit">Получить КП с
-                                    идеями</button>
-                            </div>
-                        </div>
-
-
                         <!-- Вопрос 1 -->
                         <div class="quiz-step active" data-step="1">
                             <h3 class="quiz-question">Для кого предназначается мерч?</h3>
@@ -254,10 +228,11 @@
                                     </div>
                                 </label>
                                 <label class="quiz-option">
-                                    <input type="checkbox" name="merch-event" value="Массовая акция">
+                                    <input type="checkbox" name="merch-event" value="Выставка/Конференция">
                                     <div class="quiz-option-content">
-                                        <img src="./resources/images/form-images/conference.png" alt="Массовая акция">
-                                        <span>Массовая акция</span>
+                                        <img src="./resources/images/form-images/conference.png"
+                                            alt="Выставка/Конференция">
+                                        <span>Выставка/Конференция</span>
                                     </div>
                                 </label>
                                 <label class="quiz-option">
@@ -269,11 +244,18 @@
                                     </div>
                                 </label>
                                 <label class="quiz-option">
-                                    <input type="checkbox" name="merch-event" value="Выставка/Конференция">
+                                    <input type="checkbox" name="merch-event" value="Подарки для руководства">
                                     <div class="quiz-option-content">
-                                        <img src="./resources/images/form-images/conference.png"
-                                            alt="Выставка/Конференция">
-                                        <span>Выставка/Конференция</span>
+                                        <img src="./resources/images/form-images/present.png"
+                                            alt="Подарки для руководства">
+                                        <span>Подарки для руководства</span>
+                                    </div>
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="checkbox" name="merch-event" value="Массовая акция">
+                                    <div class="quiz-option-content">
+                                        <img src="./resources/images/form-images/conference.png" alt="Массовая акция">
+                                        <span>Массовая акция</span>
                                     </div>
                                 </label>
                                 <label class="quiz-option">
@@ -282,14 +264,6 @@
                                         <img src="./resources/images/form-images/new-stuff.png"
                                             alt="Внедрение новых сотрудников">
                                         <span>Внедрение новых сотрудников</span>
-                                    </div>
-                                </label>
-                                <label class="quiz-option">
-                                    <input type="checkbox" name="merch-event" value="Подарки для руководства">
-                                    <div class="quiz-option-content">
-                                        <img src="./resources/images/form-images/present.png"
-                                            alt="Подарки для руководства">
-                                        <span>Подарки для руководства</span>
                                     </div>
                                 </label>
                                 <label class="quiz-option">
@@ -309,13 +283,6 @@
                         <div class="quiz-step" data-step="3">
                             <h3 class="quiz-question">Есть ли готовый дизайн?</h3>
                             <div class="quiz-options">
-                                <label class="quiz-option">
-                                    <input type="radio" name="merch-design" value="Только логотип">
-                                    <div class="quiz-option-content">
-                                        <img src="./resources/images/form-images/logo.png" alt="Только логотип">
-                                        <span>Только логотип</span>
-                                    </div>
-                                </label>
                                 <label class="quiz-option">
                                     <input type="radio" name="merch-design" value="Брендбук">
                                     <div class="quiz-option-content">
@@ -337,6 +304,13 @@
                                         <img src="./resources/images/form-images/idea.png"
                                             alt="Идея или виденье концепции">
                                         <span>Идея или виденье концепции</span>
+                                    </div>
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="merch-design" value="Только логотип">
+                                    <div class="quiz-option-content">
+                                        <img src="./resources/images/form-images/logo.png" alt="Только логотип">
+                                        <span>Только логотип</span>
                                     </div>
                                 </label>
                                 <label class="quiz-option">
@@ -366,8 +340,13 @@
                             <h3 class="quiz-question">Какой тираж необходим?</h3>
                             <p>Укажите тираж (от 50 шт)
                             </p>
-                            <input type="number" class="quiz-input" name="merch-circulation"
-                                placeholder="Введите количество" min="50">
+                            <div class="input-with-icon">
+                                <span class="input-icon">
+                                    <img src="./resources/icons/contact-cart.svg" alt="Имя">
+                                </span>
+                                <input type="number" class="quiz-input" name="merch-circulation"
+                                    placeholder="Введите количество" min="50">
+                            </div>
                             <div class="error-message" id="circulationError">Тираж должен быть не менее 50 шт</div>
                             <div class="quiz-buttons">
                                 <button type="button" class="quiz-btn btn btn-secondary next">Следующий вопрос</button>
@@ -378,7 +357,12 @@
                         <div class="quiz-step" data-step="5">
                             <h3 class="quiz-question">К какому сроку необходима готовность?</h3>
                             <p>Укажите примерную дату</p>
-                            <input type="date" class="quiz-input" name="merch-deadline">
+                            <div class="input-with-icon">
+                                <span class="input-icon">
+                                    <img src="./resources/icons/contact-cal.svg" alt="Имя">
+                                </span>
+                                <input type="date" class="quiz-input" name="merch-deadline">
+                            </div>
                             <div class="error-message" id="deadlineError">Дата не может быть раньше сегодняшнего дня
                             </div>
                             <div class="quiz-buttons">
@@ -393,23 +377,41 @@
                             <p>и мы отправим персональное
                                 КП с 5 вариантами
                                 подарков <span id="changable-present-quiz-word">под успешный реализ проекта</span> </p>
-
-                            <input type="text" class="quiz-input" name="user-name" placeholder="Ваше имя" required>
+                                <div class="quiz-unput-holder">
+<div class="input-with-icon">
+                                <span class="input-icon">
+                                    <img src="./resources/icons/contact-user.svg" alt="Имя">
+                                </span>
+                                <input type="text" class="quiz-input" name="user-name" placeholder="Ваше имя" required>
+                            </div>
                             <div class="error-message" id="nameError">Пожалуйста, введите ваше имя</div>
 
-                            <input type="tel" class="quiz-input" name="user-phone" placeholder="Номер телефона"
-                                required>
+                            <div class="input-with-icon">
+                                <span class="input-icon">
+                                    <img src="./resources/icons/contact-phone.svg" alt="Имя">
+                                </span>
+                                <input type="tel" class="quiz-input" name="user-phone" placeholder="Номер телефона"
+                                    required>
+                            </div>
+
                             <div class="error-message" id="phoneError">Пожалуйста, введите корректный номер телефона
                             </div>
 
-                            <input type="email" class="quiz-input" name="user-email" placeholder="Электронная почта"
-                                required>
+                            <div class="input-with-icon">
+                                <span class="input-icon">
+                                    <img src="./resources/icons/contact-email.svg" alt="Имя">
+                                </span>
+                                <input type="email" class="quiz-input" name="user-email" placeholder="Электронная почта"
+                                    required>
+                            </div>
+
                             <div class="error-message" id="emailError">Пожалуйста, введите корректный email</div>
 
-                            <div class="quiz-buttons">
-                                <button type="button" class="quiz-btn btn-secondary submit">Получить КП с
-                                    идеями</button>
-                            </div>
+                            <button type="button" class="quiz-btn btn btn-secondary submit">Получить КП с
+                                идеями</button>
+                                </div>
+                            
+
                         </div>
                     </form>
                 </div>
@@ -671,7 +673,7 @@
                     <ul class="reasons-list">
                         <li class="reason-item">
                             <img src="./resources/images/loyalty/wow.png" alt="" class="reason-icon">
-                            <p><span class="reason-title">НЕ «ширпотреб»,</span> всегда <span
+                            <p>НЕ «ширпотреб», всегда <span
                                     class="reason-title">ВАУ-эффект</span> от качества и нужности подарков</p>
                         </li>
                         <li class="reason-item">
@@ -993,11 +995,11 @@
                     </div>
                     <div class="comparison-cell col-other-companies">
                         <img src="./resources/icons/cross.svg" alt="cross">
-                        <p>Универсальные наборы</p>
+                        <p>Универсальные<br> наборы</p>
                     </div>
                     <div class="comparison-cell col-our-company">
                         <img src="./resources/icons/check.svg" alt="check">
-                        <p>Продуманные специально под IT</p>
+                        <p>Продуманные<br>специально под IT</p>
                     </div>
                 </div>
 
@@ -1012,7 +1014,7 @@
                     </div>
                     <div class="comparison-cell col-our-company">
                         <img src="./resources/icons/check.svg" alt="check">
-                        <p>Глубокая персонализация: имя, фото, индивидуальные элементы</p>
+                        <p>Глубокая персонализация:<br>имя, фото, индивидуальные<br>элементы</p>
                     </div>
 
                 </div>
@@ -1023,11 +1025,11 @@
                     </div>
                     <div class="comparison-cell col-other-companies">
                         <img src="./resources/icons/cross.svg" alt="cross">
-                        <p>Чаще всего в офис, одной партией</p>
+                        <p>Чаще всего в офис,<br>одной партией</p>
                     </div>
                     <div class="comparison-cell col-our-company">
                         <img src="./resources/icons/check.svg" alt="check">
-                        <p>Доставка каждому сотруднику «в руки» по всей стране/миру</p>
+                        <p>Доставка каждому<br>сотруднику «в руки»<br>по всей стране/миру</p>
                     </div>
                 </div>
 
@@ -1038,11 +1040,11 @@
                     </div>
                     <div class="comparison-cell col-other-companies">
                         <img src="./resources/icons/cross.svg" alt="cross">
-                        <p>Максимум онлайн-открытка</p>
+                        <p>Максимум онлайн-<br>открытка</p>
                     </div>
                     <div class="comparison-cell col-our-company">
                         <img src="./resources/icons/check.svg" alt="check">
-                        <p>QR-коды, подписки на сервисы, геймификация</p>
+                        <p>QR-коды, подписки на<br>сервисы, геймификация</p>
                     </div>
                 </div>
 
@@ -1057,7 +1059,7 @@
                     </div>
                     <div class="comparison-cell col-our-company">
                         <img src="./resources/icons/check.svg" alt="check">
-                        <p>Инструмент HR-брендинга: CJM, NPS, PR-эффект, обратная связь</p>
+                        <p>Инструмент HR-брендинга:<br>CJM, NPS, PR-эффект,<br>обратная связь</p>
                     </div>
                 </div>
 
@@ -1072,7 +1074,8 @@
                     </div>
                     <div class="comparison-cell col-our-company">
                         <img src="./resources/icons/check.svg" alt="check">
-                        <p>Экономим HR-отделу и отделу маркетинга часы: концепция, комплектация, логистика «под ключ»
+                        <p>Экономим HR-отделу<br>и отделу маркетинга часы: концепция, комплектация,<br>логистика «под
+                            ключ»
                         </p>
                     </div>
                 </div>
@@ -1084,11 +1087,11 @@
                     </div>
                     <div class="comparison-cell col-other-companies">
                         <img src="./resources/icons/cross.svg" alt="cross">
-                        <p>Сроки часто нарушаются, особенно перед праздниками</p>
+                        <p>Сроки часто нарушаются,<br>особенно перед праздниками</p>
                     </div>
                     <div class="comparison-cell col-our-company">
                         <img src="./resources/icons/check.svg" alt="check">
-                        <p>Гарантия сроков в договоре</p>
+                        <p>Гарантия сроков<br>в договоре</p>
                     </div>
                 </div>
 
@@ -1099,11 +1102,11 @@
                     </div>
                     <div class="comparison-cell col-other-companies">
                         <img src="./resources/icons/cross.svg" alt="cross">
-                        <p>Новый год, 8 марта, день компании</p>
+                        <p>Новый год, 8 марта,<br>день компании</p>
                     </div>
                     <div class="comparison-cell col-our-company" style="border-bottom-right-radius: 45px;">
                         <img src="./resources/icons/check.svg" alt="check">
-                        <p>Онбординг, успешный релиз проекта, ДР сотрудника и т.п.</p>
+                        <p>Онбординг, успешный<br>релиз проекта, ДР<br>сотрудника и т.п.</p>
                     </div>
                 </div>
             </div>
@@ -1145,11 +1148,12 @@
                 <div class="final-cta-buttons">
                     <div class="cta-group">
                         <p>Успейте получить КП<br> <b>до конца недели:</b></p>
-                        <a href="#" class="btn btn-primary open-form">получить КП <img src="./resources/icons/finger-icon.svg"
-                                alt=""></a>
+                        <a href="#" class="btn btn-primary open-form">получить КП <img
+                                src="./resources/icons/finger-icon.svg" alt=""></a>
                     </div>
                     <div class="cta-group">
-                        <a href="#" class="btn btn-primary">НАПИСАТЬ В TG <img src="${ASSET_PATH}/1_548.svg" alt=""></a>
+                        <a href="#" class="btn btn-primary" id="tg-btn">НАПИСАТЬ В TG <img
+                                src="./resources/icons/telegram.svg" alt=""></a>
                         <div class="social-links">
                             <a href="#"><img src="./resources/images/timer/sms.svg" alt="Social icon"></a>
                             <a href="#"><img src="./resources/images/timer/phone.svg" alt="Social icon"></a>
