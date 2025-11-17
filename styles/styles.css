@@ -499,8 +499,8 @@ p {
 #comparison-decoration-ball {
     position: absolute;
     width: 500px;
-    bottom: -70px;
-    left: 63px;
+    bottom: -100px;
+    left: -10px;
     z-index: -1;
     transform: translate(-50%, 0);
 }
@@ -508,8 +508,8 @@ p {
 #comparison-decoration-sticks {
     position: absolute;
     width: 500px;
-    bottom: -30px;
-    right: 0px;
+    bottom: -60px;
+    right: -50px;
     z-index: -1;
     transform: translate(50%, 0);
 }
@@ -1342,9 +1342,8 @@ p {
 
 .product-cta {
     position: absolute;
-    width: fit-content;
-    display: flex
-;
+    width: max-content;
+    display: flex;
     padding: 48px 70px;
     font-size: 18px;
     gap: 5px;
@@ -2914,6 +2913,7 @@ p {
     width: 100%;
     height: 100%;
     overflow: auto;
+    background-color: #0000004f;
 
 }
 
