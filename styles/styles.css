@@ -203,8 +203,12 @@ p {
     left: 50%;
     width: 100%;
     z-index: 1000;
-}
+        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
+}
+.header.hidden {
+    transform: translateY(-100%);
+}
 .header-container {
     display: flex;
     align-items: center;
@@ -486,7 +490,12 @@ p {
     left: 50%;
     transform: translate(-50%, 0);
 }
-
+#comparison-decoration-table-badge{
+    position: absolute;
+    width: 245px;
+    top: -37px;
+    right: 0;
+}
 #comparison-decoration-ball {
     position: absolute;
     width: 500px;
@@ -545,7 +554,7 @@ p {
 
 #changable-hero-word,
 #changable-present-seg-word,
-#changable-seg-word {
+#changable-seg-word, #changable-present-quiz-word {
     transition: all 0.3s ease-in-out;
     display: inline-block;
     /* чтобы transform работал корректно */
@@ -580,13 +589,15 @@ p {
     font-size: 14px;
     color: #bababa;
 }
+
 .table-container {
-        position: absolute;
+    position: absolute;
     width: 100%;
     bottom: 0;
     left: 50%;
     transform: translate(-50%, 0);
 }
+
 .hero-image-wrapper {
     position: absolute;
     right: -17%;
@@ -905,7 +916,7 @@ p {
     font-size: 32.8px;
     font-weight: 400;
     line-height: 1.4;
-    margin-bottom: 40px;
+    margin-bottom: 15px;
     text-align: left;
 }
 
@@ -934,12 +945,7 @@ p {
     font-size: 14.3px;
     gap: 10px;
 }
-
-/* Дополнительные стили для работы с написанным HTML и JS */
-
-/* Прогресс-бар с уменьшением справа налево */
 .quiz-progress {
-    margin-bottom: 30px;
     width: 100%;
 }
 
@@ -1090,9 +1096,12 @@ p {
     display: flex;
     gap: 15px;
     margin-top: 30px;
-    width: 100%;
+    width: fit-content;
 }
+.quiz-buttons .btn-secondary{
+    font-weight: 300;
 
+}
 
 .quiz-btn.next:hover {
     transform: translateY(-2px);
@@ -1165,20 +1174,17 @@ p {
     margin-bottom: 10px;
 }
 
-/* Переопределение для контейнера с формой захвата */
 .quiz-container>form {
     width: 100%;
 }
 
-/* Стили для текстовых описаний под вопросами */
 .quiz-step p {
-    text-align: center;
-    margin-bottom: 20px;
+    text-align: left;
+    margin-bottom: 15px;
     color: #666;
-    font-size: 16px;
+    font-size: 17px;
 }
 
-/* Плавные переходы для всех интерактивных элементов */
 .quiz-option,
 .quiz-btn,
 .quiz-input,
@@ -1273,82 +1279,36 @@ p {
 
 .catalog-grid {
     display: flex;
-    gap: 36px;
-    overflow-x: auto;
-    scrollbar-width: thin;
+    overflow: auto;
+    scrollbar-width: none;
     scrollbar-color: #ccc transparent;
     padding-bottom: 100px;
-    width: 100vw;
-    margin-left: calc((100% - 100vw) / 2);
-    padding-left: 120px;
-    cursor: grab;
-    scroll-behavior: auto;
-    -webkit-overflow-scrolling: auto;
-    user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    pointer-events: auto;
-    scrollbar-width: none;
-    /* Firefox */
-    -ms-overflow-style: none;
-    /* IE и Edge */
+
 }
-
-.catalog-grid,
-.catalog-grid * {
-    user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    -moz-user-select: none;
-    -webkit-touch-callout: none;
-    -webkit-tap-highlight-color: transparent;
+.product-card-wrapper{
+    margin: 0 60px;
+    max-width: min-content;
+    height: 100vh;
 }
-
-.catalog-grid button,
-.catalog-grid a {
-    user-select: auto;
-    -webkit-user-select: auto;
-    -ms-user-select: auto;
-    cursor: pointer;
-    /* Разрешаем события для кликабельных элементов */
-    pointer-events: auto;
-}
-
-.catalog-grid:active {
-    cursor: grabbing;
-}
-
-.catalog-grid::-webkit-scrollbar {
-    display: none;
-    /* Chrome, Safari и Opera */
-}
-
-.catalog-grid::-webkit-scrollbar-thumb {
-    display: none;
-    /* Chrome, Safari и Opera */
-}
-
-
-
-.catalog-grid::-webkit-scrollbar-thumb:hover {
-    background: #aaa;
-}
-
 .product-card {
     background-color: var(--color-bg-section-light);
+    position: relative;
     border-radius: 30px;
     text-align: center;
     padding-bottom: 30px;
     width: 666px;
     flex-shrink: 0;
     padding: 36px;
+    height: 80vh;
+
 }
 
 .product-image {
+    
     width: 100%;
-    height: 528px;
+    height: 361px;
     object-fit: cover;
-    margin-bottom: -42px;
+    margin-bottom: -38px;
     position: relative;
     z-index: 1;
     border-radius: 30px;
@@ -1381,14 +1341,17 @@ p {
 }
 
 .product-cta {
-    width: 100%;
-    display: flex;
+    position: absolute;
+    width: fit-content;
+    display: flex
+;
     padding: 48px 70px;
     font-size: 18px;
     gap: 5px;
-    top: -10px;
+    bottom: 0;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 52%);
+
 
 }
 
@@ -1890,8 +1853,7 @@ p {
     gap: 10px;
     margin-top: -40px;
     position: absolute;
-    bottom: 0;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 29%);
 
 }
 
@@ -2126,7 +2088,8 @@ p {
     display: flex;
     gap: 30px;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    width: max-content;
+
 }
 
 .cases-slider::-webkit-scrollbar {
@@ -2134,13 +2097,12 @@ p {
 }
 
 .case-card {
-    max-width: 1400px;
     scroll-snap-align: center;
     display: flex;
     padding: 51px 70px;
     background-color: var(--color-bg-section-light);
     border-radius: 30px;
-    min-width: 100%;
+    max-width: 90vw;
     overflow: hidden;
     box-sizing: border-box;
 }
@@ -2151,7 +2113,7 @@ p {
 }
 
 .case-content h3 {
-    font-size: 38px;
+    font-size: 28px;
     font-weight: 700;
     line-height: 1.4;
     margin-bottom: 20px;
@@ -2159,7 +2121,7 @@ p {
 }
 
 .case-description {
-    font-size: 22px;
+    font-size: 17px;
     line-height: 1.4;
     color: rgba(0, 0, 0, 0.4);
     margin-bottom: 20px;
@@ -2170,7 +2132,7 @@ p {
 }
 
 .case-badge {
-    font-size: 20.5px;
+    font-size: 17.5px;
     font-weight: 700;
     margin-bottom: 15px;
     padding: 15px 25px;
@@ -2191,7 +2153,7 @@ p {
 }
 
 .case-details li {
-    font-size: 22px;
+    font-size: 17px;
     line-height: 1.4;
     position: relative;
 }
@@ -2250,7 +2212,7 @@ p {
 
 .slider-arrow.prev {
     left: -40px;
-    rotate: -180deg;
+    rotate: 180deg;
 
 }
 
@@ -2258,9 +2220,6 @@ p {
     right: -40px;
 
 }
-
-.slider-arrow:hover {}
-
 
 .slider-arrow img {
     width: 80px;
@@ -2361,15 +2320,16 @@ p {
 
 .comparison-table {
     display: flex;
+    position: relative;
     flex-direction: column;
     border-radius: 12px;
     background: white;
     max-width: 1200px;
     margin: 0 auto;
-    overflow: hidden;
     border-radius: 45px;
     margin-bottom: 70px;
 }
+
 
 /* Общие стили для строк */
 .comparison-header,
@@ -2709,8 +2669,10 @@ p {
 
 .btn-secondary {
     position: relative;
-    background: radial-gradient(173.07% 205.27% at 50% 50%, #2acae2 0%, #00bedd 100%);
+    background: linear-gradient(45deg, #28c0d7 0%, #52e8ff 100%);
     color: var(--color-white);
+
+    color: var(--color-text-black);
 }
 
 .btn-secondary::after {
@@ -2943,13 +2905,140 @@ p {
     }
 }
 
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+
+}
+
+.modal-content {
+   max-width: 1200px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    padding: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+
+.close:hover {
+    background: rgba(0, 0, 0, 0.059);
+}
+
+/* Стили для сообщений о статусе */
+.status-message {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.status-success {
+    color: #28a745;
+}
+
+.status-error {
+    color: #dc3545;
+}
+
+/* Стили для квиза */
+.quiz-container {
+    position: relative;
+}
+
+.quiz-success,
+.quiz-error {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+    margin: 0 auto;
+}
+
+.quiz-success.active,
+.quiz-error.active {
+    display: block;
+}
+
+.quiz-success h2,
+.quiz-error h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: var(--color-primary);
+}
+
+.quiz-error h2 {
+    color: #dc3545;
+}
+
+.quiz-success p,
+.quiz-error p {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+}
+#quizForm{
+    width: 100%;
+}
+/* Адаптивность для модального окна */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+        padding: 15px;
+    }
+
+    .contact-form-wrapper {
+        flex-direction: column;
+    }
+
+    .images-container {
+        display: none;
+    }
+}
 
 .contact-form-section {
-    padding: 65px;
-    position: absolute;
-    width: fit-content;
-    box-sizing: border-box;
+    padding: 60px;
     border-radius: 30px;
+
 }
 
 .contact-form-wrapper {
@@ -2987,11 +3076,7 @@ p {
     text-align: center;
 }
 
-.form-subsubtitle {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 40px;
-}
+
 
 .contact-form {
     max-width: 500px;
@@ -3027,16 +3112,20 @@ p {
 
 .form-input {
     width: 100%;
-    padding: 15px 15px 15px 50px;
+    padding: 25px 15px 25px 50px;
     border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
+    border-radius: 10px;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    transition: 0.3s ease;
+    font-family: 'SF Pro Display';
+
 }
 
 .form-input:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: var(--color-primary);
 }
 
 .form-textarea {
@@ -3060,16 +3149,25 @@ p {
     background-color: #0056b3;
 }
 
-.agreement-text {
-    font-size: 12px;
-    color: #666;
+.agreement-text,
+.form-subsubtitle {
+    font-size: 15px;
+    color: #000000;
     text-align: center;
     margin-top: 20px;
     line-height: 1.4;
+    opacity: 0.2;
+}
+
+.form-subsubtitle {
+    margin-bottom: 40px;
+    margin-top: 0;
+
 }
 
 .images-container {
-    flex: 0 0 400px;
+    height: 100%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     gap: 20px;

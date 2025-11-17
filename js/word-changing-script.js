@@ -3,6 +3,8 @@ function rotateWords() {
     const heroWordElement = document.getElementById('changable-hero-word');
     const segWordElement = document.getElementById('changable-seg-word');
     const presentSegWordElement = document.getElementById('changable-present-seg-word');
+    const presentQuizWordElement = document.getElementById('changable-present-quiz-word');
+
     const presentSegWords = ["онбординг", "др сотрудника", "велком наборы", "Новый год", "гендерные праздники", "под успешный реализ проекта"];
 
     let heroCurrentIndex = 0;
@@ -28,6 +30,8 @@ function rotateWords() {
         changeWord(heroWordElement, heroWords, heroCurrentIndex);
         changeWord(segWordElement, heroWords, heroCurrentIndex);
         changeWord(presentSegWordElement, presentSegWords, giftCurrentIndex);
+        changeWord(presentQuizWordElement, presentSegWords, giftCurrentIndex);
+
     }
 
     // Запускаем смену слов каждые 3 секунды
