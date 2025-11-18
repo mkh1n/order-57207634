@@ -1,232 +1,270 @@
-// ===== HEADER SCROLL BEHAVIOR =====
-class HeaderManager {
-    constructor() {
-        this.lastScrollY = window.scrollY;
-        this.header = document.querySelector('.site-header');
-        this.isHidden = false;
-        this.scrollThreshold = 100;
-        this.ticking = false;
-        
-        this.init();
-    }
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('=== COMPLETE HEADER MANAGER INITIALIZATION ===');
     
-    init() {
-        if (!this.header) {
-            console.warn('Header element not found');
-            return;
+    // ===== HEADER SCROLL BEHAVIOR =====
+    class HeaderManager {
+        constructor() {
+            this.header = document.getElementById('header');
+            this.lastScrollY = window.scrollY;
+            this.isHidden = false;
+            this.ticking = false;
+            
+            this.init();
         }
         
-        window.addEventListener('scroll', this.handleScroll.bind(this), { passive: true });
-        window.addEventListener('resize', this.handleResize.bind(this));
-        
-        console.log('Header manager initialized');
-    }
-    
-    handleScroll() {
-        if (!this.ticking) {
-            requestAnimationFrame(() => {
-                this.updateHeader();
-                this.ticking = false;
-            });
-            this.ticking = true;
+        init() {
+            if (!this.header) {
+                console.error('❌ Header element with id="header" not found!');
+                return;
+            }
+            
+            console.log('Header manager initialized');
+            window.addEventListener('scroll', this.onScroll.bind(this));
         }
-    }
-    
-    handleResize() {
-        // На мобильных всегда показываем хедер
-        if (window.innerWidth <= 780) {
-            this.showHeader();
-        }
-    }
-    
-    updateHeader() {
-        const currentScrollY = window.scrollY;
-        const scrollDelta = currentScrollY - this.lastScrollY;
-        const isMobile = window.innerWidth <= 780;
         
-        if (isMobile) {
-            // На мобильных не скрываем хедер
-            this.showHeader();
+        onScroll() {
+            if (!this.ticking) {
+                requestAnimationFrame(this.updateHeader.bind(this));
+                this.ticking = true;
+            }
+        }
+        
+        updateHeader() {
+            const currentScrollY = window.scrollY;
+            const scrollDelta = currentScrollY - this.lastScrollY;
+            
+            const isScrollingDown = scrollDelta > 0;
+            const isScrollingUp = scrollDelta < 0;
+            const isAtTop = currentScrollY < 50;
+            
+            // Скрываем хедер при скролле вниз (кроме верха страницы)
+            if (isScrollingDown && currentScrollY > 100 && !isAtTop) {
+                if (!this.isHidden) {
+                    this.header.classList.add('hidden');
+                    this.isHidden = true;
+                }
+            } 
+            // Показываем хедер при скролле вверх или вверху страницы
+            else if ((isScrollingUp || isAtTop) && this.isHidden) {
+                this.header.classList.remove('hidden');
+                this.isHidden = false;
+            }
+            
             this.lastScrollY = currentScrollY;
-            return;
+            this.ticking = false;
         }
         
-        // Скролл вниз и проскроллили больше порога
-        if (scrollDelta > 0 && currentScrollY > this.scrollThreshold && !this.isHidden) {
-            this.hideHeader();
-        } 
-        // Скролл вверх или вверху страницы
-        else if (scrollDelta < 0 || currentScrollY <= this.scrollThreshold) {
-            this.showHeader();
+        // Методы для ручного управления
+        show() {
+            this.header.classList.remove('hidden');
+            this.isHidden = false;
         }
         
-        this.lastScrollY = currentScrollY;
+        hide() {
+            this.header.classList.add('hidden');
+            this.isHidden = true;
+        }
+        
+        getHeight() {
+            return this.header.offsetHeight;
+        }
     }
-    
-    hideHeader() {
-        this.header.style.transform = 'translateY(-100%)';
-        this.header.style.transition = 'transform 0.3s ease';
-        this.isHidden = true;
-    }
-    
-    showHeader() {
-        this.header.style.transform = 'translateY(0)';
-        this.header.style.transition = 'transform 0.3s ease';
-        this.isHidden = false;
-    }
-}
 
-// ===== ACTIVE NAVIGATION =====
-class NavigationManager {
-    constructor() {
-        this.navLinks = document.querySelectorAll('.main-nav a');
-        this.sections = [];
-        
-        this.init();
-    }
-    
-    init() {
-        if (this.navLinks.length === 0) {
-            console.warn('Navigation links not found');
-            return;
+    // ===== ACTIVE NAVIGATION =====
+    class NavigationManager {
+        constructor() {
+            this.navLinks = document.querySelectorAll('.main-nav a');
+            this.sections = [];
+            
+            this.init();
         }
         
-        // Собираем все секции с ID
-        this.navLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            if (href && href.startsWith('#')) {
-                const sectionId = href.substring(1);
-                const section = document.getElementById(sectionId);
-                if (section) {
-                    this.sections.push({
-                        id: sectionId,
-                        element: section,
-                        link: link
-                    });
+        init() {
+            if (this.navLinks.length === 0) {
+                console.warn('Navigation links not found');
+                return;
+            }
+            
+            // Собираем все секции с ID
+            this.navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    const sectionId = href.substring(1);
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        this.sections.push({
+                            id: sectionId,
+                            element: section,
+                            link: link
+                        });
+                    }
+                }
+            });
+            
+            window.addEventListener('scroll', this.throttle(this.updateActiveNav.bind(this), 100));
+            this.updateActiveNav();
+            
+            console.log('Navigation manager initialized with', this.sections.length, 'sections');
+        }
+        
+        throttle(func, limit) {
+            let inThrottle;
+            return function() {
+                const args = arguments;
+                const context = this;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
                 }
             }
-        });
-        
-        window.addEventListener('scroll', this.throttle(this.updateActiveNav.bind(this), 100));
-        this.updateActiveNav();
-        
-        console.log('Navigation manager initialized with', this.sections.length, 'sections');
-    }
-    
-    throttle(func, limit) {
-        let inThrottle;
-        return function() {
-            const args = arguments;
-            const context = this;
-            if (!inThrottle) {
-                func.apply(context, args);
-                inThrottle = true;
-                setTimeout(() => inThrottle = false, limit);
-            }
         }
-    }
-    
-    updateActiveNav() {
-        if (this.sections.length === 0) return;
         
-        const scrollPosition = window.scrollY + 100;
-        let activeSection = null;
-        let minDistance = Infinity;
-        
-        this.sections.forEach(({ id, element, link }) => {
-            const rect = element.getBoundingClientRect();
-            const sectionTop = rect.top + window.scrollY;
-            const sectionBottom = sectionTop + rect.height;
+        updateActiveNav() {
+            if (this.sections.length === 0) return;
             
-            // Проверяем, находится ли секция в видимой области
-            const isInView = scrollPosition >= sectionTop && scrollPosition < sectionBottom;
-            const distanceToTop = Math.abs(sectionTop - scrollPosition);
+            const scrollPosition = window.scrollY + 100;
+            let activeSection = null;
+            let minDistance = Infinity;
             
-            if (isInView && distanceToTop < minDistance) {
-                minDistance = distanceToTop;
-                activeSection = id;
-            }
-        });
-        
-        // Если нет активной секции в видимой области, ищем ближайшую
-        if (!activeSection) {
+            // Сначала ищем секцию в видимой области
             this.sections.forEach(({ id, element }) => {
                 const rect = element.getBoundingClientRect();
                 const sectionTop = rect.top + window.scrollY;
-                const distance = Math.abs(sectionTop - scrollPosition);
+                const sectionBottom = sectionTop + rect.height;
                 
-                if (distance < minDistance) {
-                    minDistance = distance;
+                const isInView = scrollPosition >= sectionTop && scrollPosition <= sectionBottom;
+                const distanceToTop = Math.abs(sectionTop - scrollPosition);
+                
+                if (isInView && distanceToTop < minDistance) {
+                    minDistance = distanceToTop;
                     activeSection = id;
                 }
             });
+            
+            // Если нет активной секции в видимой области, ищем ближайшую сверху
+            if (!activeSection) {
+                this.sections.forEach(({ id, element }) => {
+                    const rect = element.getBoundingClientRect();
+                    const sectionTop = rect.top + window.scrollY;
+                    const distance = Math.abs(sectionTop - scrollPosition);
+                    
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        activeSection = id;
+                    }
+                });
+            }
+            
+            // Обновляем активные классы
+            this.sections.forEach(({ id, link }) => {
+                link.classList.toggle('active', id === activeSection);
+            });
+        }
+    }
+
+    // ===== SMOOTH SCROLL =====
+    class SmoothScrollManager {
+        constructor(headerManager) {
+            this.headerManager = headerManager;
+            this.init();
         }
         
-        // Обновляем активные классы
-        this.sections.forEach(({ id, link }) => {
-            link.classList.toggle('active', id === activeSection);
-        });
-    }
-}
-
-// ===== SMOOTH SCROLL =====
-function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const href = this.getAttribute('href');
-            if (href === '#' || !document.querySelector(href)) return;
+        init() {
+            // Обработка кликов по всем якорным ссылкам
+            document.addEventListener('click', (e) => {
+                const link = e.target.closest('a[href^="#"]');
+                if (link) {
+                    this.handleClick(e, link);
+                }
+            });
+            
+            console.log('Smooth scroll manager initialized');
+        }
+        
+        handleClick(e, link) {
+            const href = link.getAttribute('href');
+            
+            // Пропускаем пустые якоря
+            if (href === '#') return;
+            
+            const targetElement = document.getElementById(href.substring(1));
+            if (!targetElement) {
+                console.warn('Target element not found:', href);
+                return;
+            }
             
             e.preventDefault();
             
-            const targetElement = document.querySelector(href);
-            const headerHeight = document.querySelector('.site-header')?.offsetHeight || 0;
+            // Показываем хедер перед скроллом
+            this.headerManager.show();
+            
+            // Рассчитываем позицию с учетом высоты хедера
+            const headerHeight = this.headerManager.getHeight();
             const targetPosition = targetElement.offsetTop - headerHeight - 20;
             
+            console.log('Smooth scrolling to:', href, {
+                targetOffset: targetElement.offsetTop,
+                headerHeight: headerHeight,
+                finalPosition: targetPosition,
+                currentScroll: window.scrollY
+            });
+            
+            // Плавный скролл
             window.scrollTo({
                 top: targetPosition,
                 behavior: 'smooth'
             });
-        });
-    });
-}
+        }
+    }
 
-// ===== INITIALIZATION =====
-document.addEventListener('DOMContentLoaded', function() {
-    // Инициализируем менеджеры
-    const headerManager = new HeaderManager();
-    const navigationManager = new NavigationManager();
-    
-    // Инициализируем плавную прокрутку
-    initSmoothScroll();
-    
-    console.log('All scripts initialized');
-});
-
-// ===== FALLBACK - простой вариант если классы не работают =====
-document.addEventListener('DOMContentLoaded', function() {
-    // Простой вариант скрытия хедера
-    let lastScroll = window.pageYOffset;
-    const header = document.querySelector('.site-header') || document.querySelector('header');
-    
-    if (header) {
-        window.addEventListener('scroll', function() {
-            const currentScroll = window.pageYOffset;
-            const isMobile = window.innerWidth <= 780;
-            
-            if (isMobile) {
-                header.style.transform = 'translateY(0)';
-                return;
+    // ===== INITIALIZATION =====
+    try {
+        // Инициализируем менеджеры по порядку
+        const headerManager = new HeaderManager();
+        const navigationManager = new NavigationManager();
+        const smoothScrollManager = new SmoothScrollManager(headerManager);
+        
+        // Глобальные функции для дебага
+        window.debugHeader = {
+            show: () => headerManager.show(),
+            hide: () => headerManager.hide(),
+            getState: () => ({
+                scrollY: window.scrollY,
+                lastScrollY: headerManager.lastScrollY,
+                isHidden: headerManager.isHidden,
+                hasHiddenClass: headerManager.header.classList.contains('hidden'),
+                headerHeight: headerManager.getHeight()
+            }),
+            getSections: () => navigationManager.sections.map(s => s.id),
+            getActiveSection: () => {
+                const activeLink = document.querySelector('.main-nav a.active');
+                return activeLink ? activeLink.getAttribute('href') : 'none';
+            },
+            testScroll: (sectionId) => {
+                const target = document.getElementById(sectionId);
+                if (target) {
+                    const headerHeight = headerManager.getHeight();
+                    const targetPosition = target.offsetTop - headerHeight - 20;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    console.log('Test scroll to:', sectionId, 'position:', targetPosition);
+                }
             }
-            
-            if (currentScroll > lastScroll && currentScroll > 100) {
-                // Скролл вниз
-                header.style.transform = 'translateY(-100%)';
-            } else {
-                // Скролл вверх
-                header.style.transform = 'translateY(0)';
-            }
-            
-            lastScroll = currentScroll;
-        });
+        };
+        
+        console.log('=== ALL SYSTEMS READY ===');
+        console.log('Debug commands available:');
+        console.log('- debugHeader.show() - show header');
+        console.log('- debugHeader.hide() - hide header');
+        console.log('- debugHeader.getState() - get header state');
+        console.log('- debugHeader.getSections() - get available sections');
+        console.log('- debugHeader.getActiveSection() - get active section');
+        console.log('- debugHeader.testScroll("section-id") - test scroll to section');
+        
+    } catch (error) {
+        console.error('Initialization error:', error);
     }
 });
