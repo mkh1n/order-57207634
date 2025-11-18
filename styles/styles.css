@@ -2776,7 +2776,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     position: absolute;
     width: 21.375rem;
     bottom: 15%;
-    right: 4.563rem;
+    right: 0.563rem;
     z-index: -1;
     transform: translate(50%, 0);
 }
@@ -3103,10 +3103,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .catalog-title {
     margin-bottom: 13px;
 }
-.product-info
-{
-    height: 30vh;
-}
 .approach-title{
     font-size: 32px;
 }
@@ -3153,8 +3149,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   
   .approach-card:nth-child(6) {
     grid-row: 6 / 7;
+    margin-bottom: 40px;
   }
-  
+  .approach-section::after{
+    background: none;
+  }
   .approach-card:nth-child(7) {
     grid-row: 7 / 8;
   }
@@ -3178,7 +3177,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   #approach-decoration-phone{
     display: none;
   }
-  #approach-decoration-bush1{
+  #approach-decoration-bush1, #approach-decoration-bush2{
     z-index: -1;
   }
   .approach-card:nth-child(7) .approach-card-content{
@@ -3215,6 +3214,29 @@ input[type="date"]::-webkit-calendar-picker-indicator {
  .approach-card.card-double-col .approach-card-content{
     padding: 35px;
   }
+  .card-double-row-content{
+    flex-direction: column;
+  }
+  .reasons-content-wrapper{
+    flex-direction: column-reverse;
+  }
+  .reasons-section{
+    padding: 0;
+  }
+  .reasons-card{
+    padding: 40px 15px;
+        box-sizing: border-box;
+        width: 100%;
+  }
+  .reasons-card-bg{
+    width: 100%;
+  }
+  .container:has(.reasons-title) {
+    padding: 24px
+}
+.reasons-card-text{
+    margin: 0;
+}
     /* comparison mobile */
 
     .comparison-table {
