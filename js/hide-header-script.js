@@ -25,6 +25,11 @@ function onScroll() {
 }
 window.addEventListener('scroll', onScroll);
 
+
+
+
+
+
 function updateActiveNav() {
     const navLinks = document.querySelectorAll('.main-nav a');
     const sectionIds = Array.from(navLinks).map(link => 
@@ -78,3 +83,4 @@ window.addEventListener('scroll', () => {
 });
 
 document.addEventListener('DOMContentLoaded', updateActiveNav);
+

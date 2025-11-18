@@ -4,6 +4,7 @@ function rotateWords() {
     const segWordElement = document.getElementById('changable-seg-word');
     const presentSegWordElement = document.getElementById('changable-present-seg-word');
     const presentQuizWordElement = document.getElementById('changable-present-quiz-word');
+    const holidayQuizWordElement = document.getElementById('changable-quiz-word');
 
     const presentSegWords = ["онбординг", "др сотрудника", "велком наборы", "Новый год", "гендерные праздники", "под успешный реализ проекта"];
 
@@ -31,6 +32,7 @@ function rotateWords() {
         changeWord(segWordElement, heroWords, heroCurrentIndex);
         changeWord(presentSegWordElement, presentSegWords, giftCurrentIndex);
         changeWord(presentQuizWordElement, presentSegWords, giftCurrentIndex);
+        changeWord(holidayQuizWordElement, presentSegWords, giftCurrentIndex);
 
     }
 

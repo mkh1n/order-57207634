@@ -1,7 +1,6 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 function getDeclension(number, words) {
-    console.log('kkkk')
     number = Math.abs(number);
     const lastDigit = number % 10;
     const lastTwoDigits = number % 100;
