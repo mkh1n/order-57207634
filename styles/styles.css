@@ -2757,8 +2757,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 #comparison-decoration-table-badge {
     position: absolute;
     width: 15.313rem;
-    top: -4.625rem;
-    right: 1.375rem;
+    top: -2.625rem;
+    right: 9.375rem;
 }
 
 #comparison-decoration-ball {
