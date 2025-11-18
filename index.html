@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=2000, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Document</title>
     <link rel="stylesheet" href="./styles/styles.css">
     <script src="./js/quiz.js"></script>
@@ -86,7 +87,14 @@
                     <div class="hero-image-wrapper">
                         <img src="./resources/images/box.png" alt="">
                     </div>
+                    <a href="#quiz" class="btn btn-primary hero-cta-mobile open-form">
+                        Получить КП с идеями
+                        <img src="./resources/icons/finger-icon.svg" alt="" class="hero-cta-icon">
+                    </a>
+                    <p class="hero-footnote-mobile">* на основе анализа от Harvard Business Review и Shadow Breeze</p>
+
                 </div>
+                
             </div>
             <div class="hero-bg-blur"></div>
         </section>
@@ -136,8 +144,12 @@
                 <div class="quiz-container container">
                     <div class="quiz-text-content">
                         <h2 class="quiz-title">
-                            Ответьте на 5 вопросов и мы подготовим <span class="quiz-title-accent">персональное КП с 5
-                                вариантами подарков</span> на <span id="changable-present-quiz-word">Новый год</span> 
+                            <span class="quiz-title-accent-mobile">Ответьте на 5 вопросов</span> и мы подготовим <span class="quiz-title-accent">
+                                <span class="quiz-title-mobile-small">
+<span class="quiz-title-mobile-bold">персональное КП</span> с 5
+                                вариантами подарков на  </span>
+                                </span>
+                                <span id="changable-present-quiz-word" class="quiz-title-mobile-small">Новый год</span>
                             <div class="quiz-badge green-bg-with-gradient">
                                 <img src="./resources/images/gift-box.png" alt="Gift icon" class="quiz-badge-icon">
                                 <p>Под ваш бюджет и сроки!</p>
@@ -1482,5 +1494,4 @@
     }
 
 </script>
-<script src="./js/scale-script.js"></script>
 </html>

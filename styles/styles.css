@@ -64,8 +64,10 @@
     --color-bg-light: #f8fafb;
     --color-bg-section-light: #edf9fb;
     --color-bg-section-green: #f1ffcb;
-    --container-padding: 6.5vw; /* 260px / 4000px */
-    --base-font-size: 0.833vw; /* Базовый размер для расчета rem */
+    --container-padding: 6.5vw;
+    /* 260px / 4000px */
+    --base-font-size: 0.833vw;
+    /* Базовый размер для расчета rem */
 }
 
 /* ===== GLOBAL STYLES ===== */
@@ -81,17 +83,8 @@ body {
     font-size: var(--base-font-size);
 }
 
-/* Добавьте это в ваш CSS */
 #page-wrapper {
     transform-origin: top left;
-}
-
-.uc-leftdscroll,
-.uc-leftscroll,
-.uc-rightscroll {
-    position: relative !important;
-    visibility: visible !important;
-    opacity: 1 !important;
 }
 
 .container {
@@ -262,7 +255,8 @@ p {
     padding: 1.125rem 1.563rem;
     height: 6.25rem;
     box-sizing: border-box;
-    margin: 0 16vw; /* 256px / 1600px */
+    margin: 0 var(--container-padding);
+    /* 256px / 1600px */
     max-width: 90vw;
 }
 
@@ -468,15 +462,24 @@ p {
     z-index: 2;
 }
 
+.hero-cta-mobile {
+    display: none;
+}
+
 .hero-cta-icon {
     width: 1.5rem;
     height: 1.625rem;
 }
 
-.hero-footnote {
+.hero-footnote,
+.hero-footnote-mobile {
     margin-top: 1.75rem;
     font-size: 0.875rem;
     color: #bababa;
+}
+
+.hero-footnote-mobile {
+    display: none;
 }
 
 .table-container {
@@ -587,7 +590,7 @@ p {
 .pitch-match {
     min-width: max-content;
     text-align: left;
-    
+
 }
 
 .pitch-match-text {
@@ -770,6 +773,7 @@ p {
         opacity: 0;
         transform: translateY(1.25rem);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -2246,7 +2250,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     line-height: 1.4;
     text-align: left;
 }
-.cta-group p b{
+
+.cta-group p b {
     font-weight: 600;
 }
 
@@ -2439,6 +2444,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -2896,11 +2902,178 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 /* ===== MOBILE (780px and below) ===== */
 @media (max-width: 780px) {
-    
+    .container {
+        padding: 0 15px;
+    }
+    .site-header {
+        top: 0;
+    }
+
+    .header-container {
+        padding: 22px 18px;
+        height: auto;
+    }
+
+    .header-cta {
+        display: none;
+    }
+
+    .logo {
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    .main-nav {
+        display: none
+    }
+
+    .hero-section {
+        padding-top: 25px;
+        padding-bottom: 260px;
+    }
+
+    .hero-title {
+        font-size: 35px;
+    }
+
+    .table-container {
+        bottom: -60%;
+
+    }
+
+    .hero-subtitle {
+        justify-content: start;
+        flex-direction: column;
+        align-items: start;
+        font-size: 20px;
+    }
+
+    .hero-image-wrapper {
+        right: -23%;
+        bottom: 91%;
+    }
+
+    .hero-image-wrapper img {
+        width: 80%;
+    }
+
+    .hero-cta {
+        display: none;
+    }
+
+    .hero-footnote {
+        display: none;
+    }
+
+    .hero-footnote-mobile {
+        display: block;
+    }
+
+    .hero-cta-mobile {
+        display: inline-flex;
+        padding: 38px 0;
+        width: calc(100% - 60px);
+    }
+
+    .pitch-cards {
+        flex-direction: column;
+    }
+
+    .pitch-wrapper {
+        flex-direction: column;
+        padding: 19px 35px;
+        background-color: #c7ff39;
+    }
 
 
+    .pitch-wrapper::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, transparent 60%);
+        pointer-events: none;
+        z-index: -1;
+    }
 
+    .pitch-card {
+        height: 167px;
+    }
 
+    .pitch-card-icon {
+        width: 80%;
+        height: auto;
+    }
+
+    .pitch-card-text,
+    .pitch-match-text {
+        font-size: 19px;
+    }
+
+    .pitch-match-cta {
+        position: relative;
+        bottom: -0;
+
+    }
+
+    .pitch-match {
+        height: 73px;
+    }
+.quiz-title{
+    font-size: 32px;
+    width: 100%;
+    text-align: center;
+}
+    .quiz-title-accent-mobile {
+        color: var(--color-primary);
+        font-weight: 600;
+    }
+    .quiz-title-accent{
+        color: unset;
+        font-weight: unset;
+    }
+    .quiz-title-mobile-small
+    {
+        font-size: 20px;
+    }
+    .quiz-title-mobile-bold{
+        font-weight: 600;
+    }
+    .quiz-holder 
+{
+    padding: 32px 23px;
+    width: fit-content;
+    align-items: center;
+}
+.quiz-title {
+    margin-bottom: 90px;
+}
+.progress-title {
+    padding: 0px 28px;
+
+}
+.quiz-question{
+    font-size: 20px;
+    align-items: center;
+}
+.quiz-option, .quiz-buttons{
+            width: 200px;
+        margin: 0 auto;
+}
+.quiz-btn{
+    width: 100%;
+}
+.quiz-buttons{
+    margin: 0 auto;
+}
+.quiz-option-content span{
+    font-size: 16px;
+}
+#bg1-section::after{
+    background: none;
+}
     /* comparison mobile */
 
     .comparison-table {
