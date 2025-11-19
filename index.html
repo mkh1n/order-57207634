@@ -3,24 +3,22 @@
 
 <head>
     <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hilary - Вау-подарки для IT и EdTech</title>
     <link rel="stylesheet" href="./styles/styles.css">
     <script src="./js/quiz.js"></script>
+    <script src="./js/burger-menu-script.js"></script>
     <script src="./js/word-changing-script.js"></script>
     <script src="./js/case-gallery-script.js"></script>
     <script src="./js/hide-header-script.js"></script>
     <script src="./js/timer-script.js"></script>
+    <link rel="preload" as="image" href="./resources/images/box.webp">
+
 </head>
 
 <body>
 
     <div id="page-wrapper">
-
-
-        <img src="./resources/images/tape.png" alt="" id="hero-decoration-tape1">
-
         <header class="site-header" id="header">
             <div class="container header-container">
                 <div class="header-left">
@@ -30,7 +28,7 @@
                         <span class="hamburger-line"></span>
                     </button>
                     <a href="#" class="logo">
-                        <img src="./resources/images/logo.png" alt="Hilari Logo" class="logo-img">
+                        <img src="./resources/images/logo.webp" alt="Hilari Logo" class="logo-img">
                         <span class="logo-text">Вау-подарки<br>для IT и EdTech</span>
                     </a>
                 </div>
@@ -59,12 +57,9 @@
         </header>
 
         <section id="hero" class="hero-section">
-
-
+            <img src="./resources/images/tape1.webp" alt="" id="hero-decoration-tape1">
             <div class="container hero-container">
-
                 <div class="hero-content">
-
                     <h1 class="hero-title">
                         <span class="hero-title-accent">Повышаем лояльность на 19%* в IT-компаниях</span>
                         через корпоративные <span class="hero-title-regular">ВАУ-подарки</span>
@@ -81,11 +76,11 @@
                     <p class="hero-footnote">* на основе анализа от Harvard Business Review и Shadow Breeze</p>
                 </div>
                 <div class="table-container">
-                    <img src="./resources/images/bush.png" alt="" id="hero-decoration-bush1">
-                    <img src="./resources/images/bush.png" alt="" id="hero-decoration-bush2">
-                    <img src="./resources/images/table.png" alt="" id="hero-decoration-table">
+                    <img src="./resources/images/bush.webp" alt="" id="hero-decoration-bush1">
+                    <img src="./resources/images/bush.webp" alt="" id="hero-decoration-bush2">
+                    <img src="./resources/images/table.webp" alt="" id="hero-decoration-table">
                     <div class="hero-image-wrapper">
-                        <img src="./resources/images/box.png" alt="">
+                        <img src="./resources/images/box.webp"  alt="">
                     </div>
                     <a href="#quiz" class="btn btn-primary hero-cta-mobile open-form">
                         Получить КП с идеями
@@ -94,7 +89,7 @@
                     <p class="hero-footnote-mobile">* на основе анализа от Harvard Business Review и Shadow Breeze</p>
 
                 </div>
-                
+
             </div>
             <div class="hero-bg-blur"></div>
         </section>
@@ -102,41 +97,41 @@
             <section id="pitch" class="pitch-section ">
                 <div class="container pitch-container">
                     <div class="pitch-wrapper green-bg-with-gradient">
-<div class="pitch-cards">
-                        <div class="pitch-card">
-                            <div class="pitch-card-icon-wrapper">
-                                <img src="./resources/images/prices.png" alt="Icon" class="pitch-card-icon">
+                        <div class="pitch-cards">
+                            <div class="pitch-card">
+                                <div class="pitch-card-icon-wrapper">
+                                    <img src="./resources/images/prices.webp" loading="lazy" alt="Icon" class="pitch-card-icon">
+                                </div>
+                                <p class="pitch-card-text">Наши цены <span class="pitch-card-text-accent">не ниже
+                                        рыночных</span>
+                                </p>
                             </div>
-                            <p class="pitch-card-text">Наши цены <span class="pitch-card-text-accent">не ниже
-                                    рыночных</span>
-                            </p>
+                            <div class="pitch-card">
+                                <div class="pitch-card-icon-wrapper">
+                                    <img src="./resources/images/work.webp" loading="lazy" alt="" class="pitch-card-icon">
+                                </div>
+                                <p class="pitch-card-text">Работаем только <span class="pitch-card-text-accent">с IT и
+                                        EdTech</span>
+                                </p>
+                            </div>
+                            <div class="pitch-card">
+                                <div class="pitch-card-icon-wrapper">
+                                    <img src="./resources/images/order.webp" loading="lazy" alt="" class="pitch-card-icon">
+                                </div>
+                                <p class="pitch-card-text">Минимальный заказ<span class="pitch-card-text-accent"> от
+                                        100.000₽</span>
+                                </p>
+                            </div>
                         </div>
-                        <div class="pitch-card">
-                            <div class="pitch-card-icon-wrapper">
-                                <img src="./resources/images/work.png" alt="" class="pitch-card-icon">
-                            </div>
-                            <p class="pitch-card-text">Работаем только <span class="pitch-card-text-accent">с IT и
-                                    EdTech</span>
-                            </p>
-                        </div>
-                        <div class="pitch-card">
-                            <div class="pitch-card-icon-wrapper">
-                                <img src="./resources/images/order.png" alt="" class="pitch-card-icon">
-                            </div>
-                            <p class="pitch-card-text">Минимальный заказ<span class="pitch-card-text-accent"> от
-                                    100.000₽</span>
-                            </p>
+                        <div class="pitch-match">
+                            <p class="pitch-match-text">Если вас это не остановило →<br><span
+                                    class="pitch-match-text-accent">у
+                                    нас
+                                    будет мэтч 💙</span></p>
+                            <a href="#" class="btn btn-primary pitch-match-cta open-form">ХОЧУ МЭТЧ</a>
                         </div>
                     </div>
-                    <div class="pitch-match">
-                        <p class="pitch-match-text">Если вас это не остановило →<br><span
-                                class="pitch-match-text-accent">у
-                                нас
-                                будет мэтч 💙</span></p>
-                        <a href="#" class="btn btn-primary pitch-match-cta open-form">ХОЧУ МЭТЧ</a>
-                    </div>
-                    </div>
-                    
+
                 </div>
             </section>
 
@@ -144,14 +139,15 @@
                 <div class="quiz-container container">
                     <div class="quiz-text-content">
                         <h2 class="quiz-title">
-                            <span class="quiz-title-accent-mobile">Ответьте на 5 вопросов</span> и мы подготовим <span class="quiz-title-accent">
+                            <span class="quiz-title-accent-mobile">Ответьте на 5 вопросов</span> и мы подготовим <span
+                                class="quiz-title-accent">
                                 <span class="quiz-title-mobile-small">
-<span class="quiz-title-mobile-bold">персональное КП</span> с 5
-                                вариантами подарков на  </span>
-                                </span>
-                                <span id="changable-present-quiz-word" class="quiz-title-mobile-small">Новый год</span>
+                                    <span class="quiz-title-mobile-bold">персональное КП</span> с 5
+                                    вариантами подарков на </span>
+                            </span>
+                            <span id="changable-present-quiz-word" class="quiz-title-mobile-small">Новый год</span>
                             <div class="quiz-badge green-bg-with-gradient">
-                                <img src="./resources/images/gift-box.png" alt="Gift icon" class="quiz-badge-icon">
+                                <img src="./resources/images/gift-box.webp" alt="Gift icon" class="quiz-badge-icon" loading="lazy">
                                 <p>Под ваш бюджет и сроки!</p>
                             </div>
                         </h2>
@@ -187,28 +183,28 @@
                                     <label class="quiz-option">
                                         <input type="checkbox" name="merch-for" value="Сотрудники">
                                         <div class="quiz-option-content">
-                                            <img src="./resources/images/form-images/stuff.png" alt="Сотрудники">
+                                            <img src="./resources/images/form-images/stuff.webp" alt="Сотрудники">
                                             <span>Сотрудники</span>
                                         </div>
                                     </label>
                                     <label class="quiz-option">
                                         <input type="checkbox" name="merch-for" value="Партнеры">
                                         <div class="quiz-option-content">
-                                            <img src="./resources/images/form-images/partners.png" alt="Партнеры">
+                                            <img src="./resources/images/form-images/partners.webp" alt="Партнеры">
                                             <span>Партнеры</span>
                                         </div>
                                     </label>
                                     <label class="quiz-option">
                                         <input type="checkbox" name="merch-for" value="Клиенты">
                                         <div class="quiz-option-content">
-                                            <img src="./resources/images/form-images/clients.png" alt="Клиенты">
+                                            <img src="./resources/images/form-images/clients.webp" alt="Клиенты">
                                             <span>Клиенты</span>
                                         </div>
                                     </label>
                                     <label class="quiz-option">
                                         <input type="checkbox" name="merch-for" value="Участники мероприятия">
                                         <div class="quiz-option-content">
-                                            <img src="./resources/images/form-images/members.png"
+                                            <img src="./resources/images/form-images/members.webp"
                                                 alt="Участники мероприятия">
                                             <span>Участники мероприятия</span>
                                         </div>
@@ -216,7 +212,7 @@
                                     <label class="quiz-option">
                                         <input type="checkbox" name="merch-for" value="Другое">
                                         <div class="quiz-option-content">
-                                            <img src="./resources/images/form-images/others.png" alt="Другое">
+                                            <img src="./resources/images/form-images/others.webp" alt="Другое">
                                             <span>Другое</span>
                                         </div>
                                     </label>
@@ -234,63 +230,63 @@
                                     <label class="quiz-option">
                                         <input type="checkbox" name="merch-event" value="Корпоративное мероприятие">
                                         <div class="quiz-option-content">
-                                            <img src="./resources/images/form-images/corp-event.png"
-                                                alt="Корпоративное мероприятие">
+                                            <img src="./resources/images/form-images/corp-event.webp"
+                                                alt="Корпоративное мероприятие" loading="lazy">
                                             <span>Корпоративное мероприятие</span>
                                         </div>
                                     </label>
                                     <label class="quiz-option">
                                         <input type="checkbox" name="merch-event" value="Оффлайн/Онлайн продажа">
                                         <div class="quiz-option-content">
-                                            <img src="./resources/images/form-images/offline-online.png"
-                                                alt="Оффлайн/Онлайн продажа">
+                                            <img src="./resources/images/form-images/offline-online.webp"
+                                                alt="Оффлайн/Онлайн продажа" loading="lazy">
                                             <span>Оффлайн/Онлайн продажа</span>
                                         </div>
                                     </label>
                                     <label class="quiz-option">
                                         <input type="checkbox" name="merch-event" value="Выставка/Конференция">
                                         <div class="quiz-option-content">
-                                            <img src="./resources/images/form-images/conference.png"
-                                                alt="Выставка/Конференция">
+                                            <img src="./resources/images/form-images/conference.webp"
+                                                alt="Выставка/Конференция" loading="lazy">
                                             <span>Выставка/Конференция</span>
                                         </div>
                                     </label>
                                     <label class="quiz-option">
                                         <input type="checkbox" name="merch-event" value="Календарные праздники">
                                         <div class="quiz-option-content">
-                                            <img src="./resources/images/form-images/calendar.png"
-                                                alt="Календарные праздники">
+                                            <img src="./resources/images/form-images/calendar.webp"
+                                                alt="Календарные праздники" loading="lazy">
                                             <span>Календарные праздники</span>
                                         </div>
                                     </label>
                                     <label class="quiz-option">
                                         <input type="checkbox" name="merch-event" value="Подарки для руководства">
                                         <div class="quiz-option-content">
-                                            <img src="./resources/images/form-images/present.png"
-                                                alt="Подарки для руководства">
+                                            <img src="./resources/images/form-images/present.webp"
+                                                alt="Подарки для руководства" loading="lazy">
                                             <span>Подарки для руководства</span>
                                         </div>
                                     </label>
                                     <label class="quiz-option">
                                         <input type="checkbox" name="merch-event" value="Массовая акция">
-                                        <div class="quiz-option-content">
-                                            <img src="./resources/images/form-images/conference.png"
+                                        <div class="quiz-option-content" loading="lazy">
+                                            <img src="./resources/images/form-images/conference.webp"
                                                 alt="Массовая акция">
                                             <span>Массовая акция</span>
                                         </div>
                                     </label>
                                     <label class="quiz-option">
                                         <input type="checkbox" name="merch-event" value="Внедрение новых сотрудников">
-                                        <div class="quiz-option-content">
-                                            <img src="./resources/images/form-images/new-stuff.png"
+                                        <div class="quiz-option-content" loading="lazy">
+                                            <img src="./resources/images/form-images/new-stuff.webp"
                                                 alt="Внедрение новых сотрудников">
                                             <span>Внедрение новых сотрудников</span>
                                         </div>
                                     </label>
                                     <label class="quiz-option">
                                         <input type="checkbox" name="merch-event" value="Другое">
-                                        <div class="quiz-option-content">
-                                            <img src="./resources/images/form-images/others.png" alt="Другое">
+                                        <div class="quiz-option-content" loading="lazy">
+                                            <img src="./resources/images/form-images/others.webp" alt="Другое">
                                             <span>Другое</span>
                                         </div>
                                     </label>
@@ -308,30 +304,30 @@
                                     <label class="quiz-option">
                                         <input type="radio" name="merch-design" value="Брендбук">
                                         <div class="quiz-option-content">
-                                            <img src="./resources/images/form-images/present.png" alt="Брендбук">
+                                            <img src="./resources/images/form-images/present.webp" alt="Брендбук" loading="lazy">
                                             <span>Брендбук</span>
                                         </div>
                                     </label>
                                     <label class="quiz-option">
                                         <input type="radio" name="merch-design" value="Готовое техническое задание">
                                         <div class="quiz-option-content">
-                                            <img src="./resources/images/form-images/tech.png"
-                                                alt="Готовое техническое задание">
+                                            <img src="./resources/images/form-images/tech.webp"
+                                                alt="Готовое техническое задание" loading="lazy">
                                             <span>Готовое техническое задание</span>
                                         </div>
                                     </label>
                                     <label class="quiz-option">
                                         <input type="radio" name="merch-design" value="Идея или виденье концепции">
                                         <div class="quiz-option-content">
-                                            <img src="./resources/images/form-images/idea.png"
-                                                alt="Идея или виденье концепции">
+                                            <img src="./resources/images/form-images/idea.webp"
+                                                alt="Идея или виденье концепции" loading="lazy">
                                             <span>Идея или виденье концепции</span>
                                         </div>
                                     </label>
                                     <label class="quiz-option">
                                         <input type="radio" name="merch-design" value="Только логотип">
                                         <div class="quiz-option-content">
-                                            <img src="./resources/images/form-images/logo.png" alt="Только логотип">
+                                            <img src="./resources/images/form-images/logo.webp" alt="Только логотип" loading="lazy">
                                             <span>Только логотип</span>
                                         </div>
                                     </label>
@@ -339,15 +335,15 @@
                                         <input type="radio" name="merch-design"
                                             value="Совсем не знаю чего хочу, главное чтоб было классно">
                                         <div class="quiz-option-content">
-                                            <img src="./resources/images/form-images/dunno.png"
-                                                alt="Совсем не знаю чего хочу">
+                                            <img src="./resources/images/form-images/dunno.webp"
+                                                alt="Совсем не знаю чего хочу" loading="lazy">
                                             <span>Совсем не знаю чего хочу, главное чтоб было классно</span>
                                         </div>
                                     </label>
                                     <label class="quiz-option">
                                         <input type="radio" name="merch-design" value="Другое">
                                         <div class="quiz-option-content">
-                                            <img src="./resources/images/form-images/others.png" alt="Другое">
+                                            <img src="./resources/images/form-images/others.webp" alt="Другое" loading="lazy">
                                             <span>Другое</span>
                                         </div>
                                     </label>
@@ -446,8 +442,8 @@
                     </div>
 
                 </div>
-                <img src="./resources/images/quiz-bg.png" alt="" class="quiz-bg-img">
-                <img src="./resources/images/tape.png" alt="" id="quiz-decoration-tape">
+                <img src="./resources/images/quiz-bg.webp" alt="" class="quiz-bg-img" loading="lazy">
+                <img src="./resources/images/tape.webp" alt="" id="quiz-decoration-tape" loading="lazy">
 
             </section>
         </section>
@@ -465,8 +461,8 @@
                 <div class="catalog-grid">
                     <div class="product-card-wrapper uc-leftscroll">
                         <div class="product-card ">
-                            <img src="./resources/images/for-analitics.png" alt="Подарочный набор для аналитиков"
-                                class="product-image">
+                            <img src="./resources/images/for-analitics.webp" alt="Подарочный набор для аналитиков"
+                                class="product-image" loading="lazy">
                             <div class="product-tag green-bg-with-gradient ">Для аналитиков</div>
                             <div class="product-info">
                                 <p class="product-description">Состав набора: свитшот с пинч-эффектом, магнитные
@@ -480,8 +476,8 @@
                     </div>
                     <div class="product-card-wrapper  uc-leftscroll">
                         <div class="product-card">
-                            <img src="./resources/images/for-ux.png" alt="Подарочный набор для дизайнеров"
-                                class="product-image">
+                            <img src="./resources/images/for-ux.webp" alt="Подарочный набор для дизайнеров"
+                                class="product-image" loading="lazy">
                             <div class="product-tag green-bg-with-gradient">Для дизайнеров UX</div>
                             <div class="product-info">
                                 <p class="product-description">Состав набора: скетчбук в деревянной обложке, набор
@@ -496,8 +492,8 @@
 
                     <div class="product-card-wrapper uc-leftscroll">
                         <div class="product-card ">
-                            <img src="./resources/images/for-testers.png" alt="Подарочный набор для тестировщиков"
-                                class="product-image">
+                            <img src="./resources/images/for-testers.webp" alt="Подарочный набор для тестировщиков"
+                                class="product-image" loading="lazy">
                             <div class="product-tag green-bg-with-gradient">Для тестировщиков</div>
                             <div class="product-info">
                                 <p class="product-description">Состав набора: стильный рюкзак для ноутбука, блокнот в
@@ -525,7 +521,7 @@
                         <div class="approach-card-content">
                             <div class="approach-green-title green-bg-with-gradient">
                                 HR-маркетинговая ценность
-                            </div> <img src="./resources/images/hr-wave.png" alt="" class="approach-hr-img">
+                            </div> <img src="./resources/images/hr-wave.webp" alt="" class="approach-hr-img" loading="lazy">
                             <p>Концепция наших подарков в том, чтобы на цифрах <span class="text-bold">показать
                                     увеличение
                                     метрик!</span> Формируем подарки как инструмент HR-стратегии и маркетинга</p>
@@ -543,43 +539,43 @@
                     <div class="approach-card card-small-col">
                         <div class="approach-card-content">
                             <div class="approach-image-wrapper light-blue">
-                                <img src="./resources/images/feedback.png" alt="" class="approach-small-img">
-                                <img src="./resources/images/cjm-1.png" alt="" class="small-num-img small-num1">
-                                <img src="./resources/images/cjm-2.png" alt="" class="small-num-img small-num2">
+                                <img src="./resources/images/feedback.webp" alt="" class="approach-small-img" loading="lazy">
+                                <img src="./resources/images/cjm-1.webp" alt="" class="small-num-img small-num1" loading="lazy">
+                                <img src="./resources/images/cjm-2.webp" alt="" class="small-num-img small-num2" loading="lazy">
 
                             </div>
                             <div class="card-small-col-text-content">
-     <h3>Фиксируем обратную связь,</h3>
-                            <p>показываем HR- отделу цифры по повышению NPS</p>
+                                <h3>Фиксируем обратную связь,</h3>
+                                <p>показываем HR- отделу цифры по повышению NPS</p>
                             </div>
-                       
+
 
                         </div>
                     </div>
                     <div class="approach-card card-small-col">
                         <div class="approach-card-content">
                             <div class="approach-image-wrapper light-blue">
-                                <img src="./resources/images/cjm.png" alt="" class="approach-small-img">
+                                <img src="./resources/images/cjm.webp" alt="" class="approach-small-img" loading="lazy">
                             </div>
-                                                        <div class="card-small-col-text-content">
+                            <div class="card-small-col-text-content">
 
-                            <h3>CJM под ключ:</h3>
-                            <p>проектируем, как подарок влияет на вовлечённость и коммуникацию</p>
-                                                        </div>
+                                <h3>CJM под ключ:</h3>
+                                <p>проектируем, как подарок влияет на вовлечённость и коммуникацию</p>
+                            </div>
                         </div>
                     </div>
                     <div class="approach-card card-small-col">
                         <div class="approach-card-content">
                             <div class="approach-image-wrapper light-blue">
-                                <img src="./resources/images/pr.png" alt="" class="approach-small-img">
-                                <img src="./resources/images/pr-1.png" alt="" class="small-num-img small-num1">
-                                <img src="./resources/images/pr-2.png" alt="" class="small-num-img small-num2">
+                                <img src="./resources/images/pr.webp" alt="" class="approach-small-img" loading="lazy">
+                                <img src="./resources/images/pr-1.webp" alt="" class="small-num-img small-num1" loading="lazy">
+                                <img src="./resources/images/pr-2.webp" alt="" class="small-num-img small-num2" loading="lazy">
                             </div>
-                                                        <div class="card-small-col-text-content">
+                            <div class="card-small-col-text-content">
 
-                            <h3>PR-эффект:</h3>
-                            <p>наборы, будут показывать в соцсетях, что стимулирует бренд</p>
-                                                        </div>
+                                <h3>PR-эффект:</h3>
+                                <p>наборы, будут показывать в соцсетях, что стимулирует бренд</p>
+                            </div>
                         </div>
                     </div>
 
@@ -591,7 +587,7 @@
                             <div class="segmentation-holder">
                                 <div class="segmentation-item">
                                     <div class="segemntation-image-holder">
-                                        <img src="./resources/images/segment.png" alt="">
+                                        <img src="./resources/images/segment.webp" alt="" loading="lazy">
                                     </div>
                                     <p><span class="approach-text-accent">Сегментируем подарки</span>
                                         по ролям: наборы для
@@ -601,7 +597,7 @@
                                 </div>
                                 <div class="segmentation-item">
                                     <div class="segemntation-image-holder">
-                                        <img src="./resources/images/segment-gift.png" alt="">
+                                        <img src="./resources/images/segment-gift.webp" alt="" loading="lazy">
                                     </div>
                                     <p><span class="approach-text-accent">Сегментируем под
                                             разные поводы:</span>
@@ -611,7 +607,7 @@
                                 </div>
                                 <div class="segmentation-item">
                                     <div class="segemntation-image-holder">
-                                        <img src="./resources/images/segment-budget.png" alt="">
+                                        <img src="./resources/images/segment-budget.webp" alt="" loading="lazy">
                                     </div>
                                     <p> <span class="approach-text-accent">Сегментируем</span>
                                         под ваш выделенный
@@ -630,7 +626,7 @@
                             </div>
                             <p><b>Цифровая «надстройка» к подарку:</b> внутри QR-код поздравление от CEO
                                 с AR-эффектом</p>
-                            <img src="./resources/images/qr-ad.png" class='qr-ad-image' alt="">
+                            <img src="./resources/images/qr-ad.webp" class='qr-ad-image' alt="" loading="lazy">
                         </div>
                         <a class="check-qr" href="#">Посмотрите, как<br>работает наш QR-код</a>
 
@@ -638,12 +634,12 @@
                     <div class="approach-card card-double-row">
                         <div class="approach-card-content card-double-row-content">
                             <div class="qr-code-bg light-blue" id="dph">
-                                <img src="./resources/images/digital-physics.png" class="qr-code-block-image"
-                                    id="dph-image" alt="">
-                                <img src="./resources/images/digital-physics-1.png" alt="" class="dph-bage"
-                                    id="dph-bage1">
-                                <img src="./resources/images/digital-physics-2.png" alt="" class="dph-bage"
-                                    id="dph-bage2">
+                                <img src="./resources/images/digital-physics.webp" class="qr-code-block-image"
+                                    id="dph-image" alt="" loading="lazy">
+                                <img src="./resources/images/digital-physics-1.webp" alt="" class="dph-bage"
+                                    id="dph-bage1" loading="lazy">
+                                <img src="./resources/images/digital-physics-2.webp" alt="" class="dph-bage"
+                                    id="dph-bage2" loading="lazy">
                             </div>
                             <div class="approach-text-content">
                                 <h3>Digital + физика:</h3>
@@ -660,7 +656,7 @@
                     <div class="approach-card card-double-row">
                         <div class="approach-card-content card-double-row-content">
                             <div class="qr-code-bg light-blue">
-                                <img src="./resources/images/gamification.png" alt="" class="qr-code-block-image">
+                                <img src="./resources/images/gamification.webp" alt="" class="qr-code-block-image" loading="lazy">
                             </div>
                             <div class="approach-text-content">
 
@@ -680,10 +676,10 @@
                     </a>
                 </div>
             </div>
-            <img src="./resources/images/bush.png" id="approach-decoration-bush1">
-            <img src="./resources/images/bush.png" id="approach-decoration-bush2">
+            <img src="./resources/images/bush.webp" id="approach-decoration-bush1" loading="lazy">
+            <img src="./resources/images/bush.webp" id="approach-decoration-bush2" loading="lazy">
 
-            <img src="./resources/images/phone-approach.png" id="approach-decoration-phone">
+            <img src="./resources/images/phone-approach.webp" id="approach-decoration-phone" loading="lazy">
         </section>
 
         <section class="reasons-section">
@@ -694,12 +690,12 @@
                     <div class="reasons-left">
                         <div class="reasons-card">
                             <div class="reasons-card-bg light-blue">
-                                <img src="./resources/images/loyalty/gifts.png" alt="Gift set"
-                                    class="reasons-card-image">
-                                <img src="./resources/images/loyalty/chart.png" class="reason-card-chart1"
-                                    alt="Gift set" class="reasons-card-image">
-                                <img src="./resources/images/loyalty/chart.png" class="reason-card-chart2"
-                                    alt="Gift set" class="reasons-card-image">
+                                <img src="./resources/images/loyalty/gifts.webp" alt="Gift set"
+                                    class="reasons-card-image" loading="lazy">
+                                <img src="./resources/images/loyalty/chart.webp" class="reason-card-chart1"
+                                    alt="Gift set" class="reasons-card-image" loading="lazy">
+                                <img src="./resources/images/loyalty/chart.webp" class="reason-card-chart2"
+                                    alt="Gift set" class="reasons-card-image" loading="lazy">
 
                             </div>
                             <p class="reasons-card-text">
@@ -717,29 +713,29 @@
                     <div class="reasons-right">
                         <ul class="reasons-list">
                             <li class="reason-item">
-                                <img src="./resources/images/loyalty/wow.png" alt="" class="reason-icon">
+                                <img src="./resources/images/loyalty/wow.webp" alt="" class="reason-icon" loading="lazy">
                                 <p>НЕ «ширпотреб», всегда <span class="reason-title">ВАУ-эффект</span> от качества и
                                     нужности подарков</p>
                             </li>
                             <li class="reason-item">
-                                <img src="./resources/images/loyalty/eco.png" alt="" class="reason-icon">
+                                <img src="./resources/images/loyalty/eco.webp" alt="" class="reason-icon" loading="lazy">
                                 <p><span class="reason-title">Эко-товары</span> в приоритете: дерево, переработанные
                                     ткани,
                                     картон</p>
                             </li>
                             <li class="reason-item">
-                                <img src="./resources/images/loyalty/handmmade.png" alt="" class="reason-icon">
+                                <img src="./resources/images/loyalty/handmmade.webp" alt="" class="reason-icon" loading="lazy">
                                 <p><span class="reason-title">Ручная работа</span> в приоритете: многие элементы
                                     собираются
                                     на нашем производстве</p>
                             </li>
                             <li class="reason-item">
-                                <img src="./resources/images/loyalty/persona.png" alt="" class="reason-icon">
+                                <img src="./resources/images/loyalty/persona.webp" alt="" class="reason-icon" loading="lazy">
                                 <p><span class="reason-title">Персонализация</span> на уровне цветовых решений, логотипа
                                     компании</p>
                             </li>
                             <li class="reason-item">
-                                <img src="./resources/images/loyalty/persona2.png" alt="" class="reason-icon">
+                                <img src="./resources/images/loyalty/persona2.webp" alt="" class="reason-icon" loading="lazy">
                                 <p><span class="reason-title">Персонализация</span> на личном уровне: добавим фото,
                                     имена,
                                     «фразочки» сотрудников</p>
@@ -758,9 +754,9 @@
                         <h2 class="reliability-title">Надежность <span class="reliability-title-regular">и
                                 прозрачность</span></h2>
                         <div class="reliability-bg light-blue">
-                            <img src="./resources/images/features/quality.png" alt="" class="reliability-card-img">
-                            <img src="./resources/images/features/badges/medal.png" alt="" class="reliability-badge"
-                                id="reliability-medal">
+                            <img src="./resources/images/features/quality.webp" alt="" class="reliability-card-img" loading="lazy">
+                            <img src="./resources/images/features/badges/medal.webp" alt="" class="reliability-badge"
+                                id="reliability-medal" loading="lazy">
                         </div>
                         <p><span class="text-bold">Качество товаров.</span> 2 этапа проверки качества</p>
                     </div>
@@ -768,71 +764,71 @@
                         <p><span class="text-bold">Гарантия сроков.</span> Фиксируем в договоре, с компенсацией если
                             будут
                             задержки</p>
-                        <img src="./resources/images/features/clock.png" alt="" class="reliability-card-bottom-img">
-                        <img src="./resources/images/features/badges/calendar.png" alt="" class="reliability-badge"
-                            id="reliability-calendar">
+                        <img src="./resources/images/features/clock.webp" alt="" class="reliability-card-bottom-img" loading="lazy">
+                        <img src="./resources/images/features/badges/calendar.webp" alt="" class="reliability-badge"
+                            id="reliability-calendar" loading="lazy">
 
                     </div>
                     <div class="reliability-card light-blue no-bg">
                         <p><span class="text-bold">Прозрачность.</span> Менеджеры будут показывать все этапы
                             спланированной
                             работы и держать «руку на пульсе»</p>
-                        <img src="./resources/images/features/badges/lock.png" alt="" class="reliability-badge"
-                            id="reliability-lock">
-                        <img src="./resources/images/features/badges/ring.png" alt="" class="reliability-badge"
-                            id="reliability-ring">
+                        <img src="./resources/images/features/badges/lock.webp" alt="" class="reliability-badge"
+                            id="reliability-lock" loading="lazy">
+                        <img src="./resources/images/features/badges/ring.webp" alt="" class="reliability-badge"
+                            id="reliability-ring" loading="lazy">
 
-                        <img src="./resources/images/features/transparency.png" alt=""
-                            class="reliability-card-bottom-img">
+                        <img src="./resources/images/features/transparency.webp" alt=""
+                            class="reliability-card-bottom-img" loading="lazy">
 
                     </div>
                     <div class="reliability-card">
                         <div class="reliability-bg light-blue">
-                            <img src="./resources/images/features/our.png" alt="" class="reliability-card-img">
-                            <img src="./resources/images/features/badges/gift.png" alt="" class="reliability-badge"
-                                id="reliability-gift">
-                            <img src="./resources/images/features/badges/fire.png" alt="" class="reliability-badge"
-                                id="reliability-fire">
+                            <img src="./resources/images/features/our.webp" alt="" class="reliability-card-img" loading="lazy">
+                            <img src="./resources/images/features/badges/gift.webp" alt="" class="reliability-badge"
+                                id="reliability-gift" loading="lazy">
+                            <img src="./resources/images/features/badges/fire.webp" alt="" class="reliability-badge"
+                                id="reliability-fire" loading="lazy">
 
                         </div>
                         <p><span class="text-bold">Свое производство<br></span> (12 лет на рынке)</p>
                     </div>
                     <div class="reliability-card">
                         <div class="reliability-bg light-blue">
-                            <img src="./resources/images/features/russia.png" alt="" class="reliability-card-img">
-                            <img src="./resources/images/features/badges/laptop.png" alt="" class="reliability-badge"
-                                id="reliability-laptop">
+                            <img src="./resources/images/features/russia.webp" alt="" class="reliability-card-img" loading="lazy">
+                            <img src="./resources/images/features/badges/laptop.webp" alt="" class="reliability-badge"
+                                id="reliability-laptop" loading="lazy">
                         </div>
                         <p><span class="text-bold">12 надежных подрядчиков<br></span> в Российской Федерации</p>
                     </div>
                     <div class="reliability-card">
                         <div class="reliability-bg light-blue">
-                            <img src="./resources/images/features/china.png" alt="" class="reliability-card-img">
-                            <img src="./resources/images/features/badges/rocket.png" alt="" class="reliability-badge"
-                                id="reliability-rocket">
+                            <img src="./resources/images/features/china.webp" alt="" class="reliability-card-img" loading="lazy">
+                            <img src="./resources/images/features/badges/rocket.webp" alt="" class="reliability-badge"
+                                id="reliability-rocket" loading="lazy">
                         </div>
                         <p><span class="text-bold">2 надежных контрактных производства</span> в Китае</p>
                     </div>
                     <div class="reliability-card final">
                         <div class="reliability-bg light-blue">
-                            <img src="./resources/images/features/service.png" alt="" class="reliability-card-img">
-                            <img src="./resources/images/features/badges/cursor.png" alt="" class="reliability-badge"
-                                id="reliability-cursor">
+                            <img src="./resources/images/features/service.webp" alt="" class="reliability-card-img" loading="lazy">
+                            <img src="./resources/images/features/badges/cursor.webp" alt="" class="reliability-badge"
+                                id="reliability-cursor" loading="lazy">
                         </div>
                         <p><span class="text-bold">Сервис полного цикла<br></span> (идея → дизайн → производство →
                             доставка)
                         </p>
                     </div>
                     <a class="btn btn-primary reliability-cta open-form">получить идеи подарков <img
-                            src="./resources/icons/finger-icon.svg" alt=""></a>
+                            src="./resources/icons/finger-icon.svg" alt="" loading="lazy"></a>
                 </div>
             </div>
-            <img src="./resources/images/blur-grass.png" id="reliability-decoration-grass">
+            <img src="./resources/images/blur-grass-bg.webp" id="reliability-decoration-grass" loading="lazy">
 
         </section>
 
         <section id="cases" class="cases-section">
-            <img src="./resources/images/blur-grass.png" id="cases-decoration-grass">
+            <img src="./resources/images/blur-grass.webp" id="cases-decoration-grass" loading="lazy">
 
             <div class="container">
                 <h2 class="cases-title">Наши <span class="cases-title-accent">кейсы</span></h2>
@@ -847,7 +843,7 @@
                                 цветах.</p>
                             <div class="case-details">
                                 <div class="green-bg-with-gradient case-badge"> <img
-                                        src="./resources/icons/case-strike.svg" alt="" class="case-icon">Задачи
+                                        src="./resources/icons/case-strike.svg" alt="" class="case-icon" loading="lazy">Задачи
                                     кейса</div>
                                 <ul>
                                     <li>— Создать ненавязчивый элемент гардероба, отражающий фирменный концепт</li>
@@ -857,7 +853,7 @@
                             </div>
                             <div class="case-details">
                                 <div class="green-bg-with-gradient case-badge"><img
-                                        src="./resources/icons/case-fire.svg" alt="" class="case-icon"> Результат
+                                        src="./resources/icons/case-fire.svg" alt="" class="case-icon" loading="lazy"> Результат
                                 </div>
                                 <ul>
                                     <li>— Придумали изделия, которые отражают концепцию Programming Store</li>
@@ -869,19 +865,78 @@
                         </div>
                         <div class="case-gallery">
                             <div class="case-gallery-item">
-                                <img src="./resources/images/for-analitics.png"
-                                    alt="Flannel shirts for Programming Store">
+                                <img src="./resources/images/for-analitics.webp"
+                                    alt="Flannel shirts for Programming Store" loading="lazy">
                             </div>
                             <div class="case-gallery-item">
-                                <img src="./resources/images/for-testers.png"
-                                    alt="Flannel shirts for Programming Store">
+                                <img src="./resources/images/for-testers.webp"
+                                    alt="Flannel shirts for Programming Store" loading="lazy">
                             </div>
                             <div class="case-gallery-item">
-                                <img src="./resources/images/for-ux.png" alt="Flannel shirts for Programming Store">
+                                <img src="./resources/images/for-ux.webp" alt="Flannel shirts for Programming Store" loading="lazy">
                             </div>
                             <div class="case-gallery-item">
-                                <img src="./resources/images/for-testers.png"
-                                    alt="Flannel shirts for Programming Store">
+                                <img src="./resources/images/for-testers.webp"
+                                    alt="Flannel shirts for Programming Store" loading="lazy">
+                            </div>
+                            <button class="slider-arrow next"><img src="./resources/icons/case-slider-btn.svg"
+                                    alt="Next" loading="lazy"></button>
+                            <button class="slider-arrow prev"><img src="./resources/icons/case-slider-btn.svg"
+                                    alt="Previous" loading="lazy"></button>
+                            <div class="slider-controls">
+
+                                <div class="slider-dots"><span class="dot active"></span><span class="dot"></span><span
+                                        class="dot"></span></div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="case-card uc-leftscroll">
+                        <div class="case-content">
+                            <h3>Фланелевые рубашки с вышивкой для Programming Store</h3>
+                            <p class="case-description">Programming Store решили доверить нам одеть своих
+                                разработчиков,
+                                стояла задача изготовить подарки коллегам на день рождения. Выбор пал на рубашку в
+                                фирменных
+                                цветах.</p>
+                            <div class="case-details">
+                                <div class="green-bg-with-gradient case-badge"> <img
+                                        src="./resources/icons/case-strike.svg" alt="" class="case-icon" loading="lazy">Задачи
+                                    кейса</div>
+                                <ul>
+                                    <li>— Создать ненавязчивый элемент гардероба, отражающий фирменный концепт</li>
+                                    <li>— Использовать нестандартные технологии</li>
+                                    <li>— Реализовать практичную и современную вещь, которую удобно носить</li>
+                                </ul>
+                            </div>
+                            <div class="case-details">
+                                <div class="green-bg-with-gradient case-badge"><img
+                                        src="./resources/icons/case-fire.svg" alt="" class="case-icon" loading="lazy"> Результат
+                                </div>
+                                <ul>
+                                    <li>— Придумали изделия, которые отражают концепцию Programming Store</li>
+                                    <li>— Использовали разные инструменты брендинга - вышивку, фурнитуру</li>
+                                    <li>— Реализовали мерч, которые соответствует запросу клиента: необычный и
+                                        удобный</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="case-gallery">
+                            <div class="case-gallery-item">
+                                <img src="./resources/images/for-analitics.webp"
+                                    alt="Flannel shirts for Programming Store" loading="lazy">
+                            </div>
+                            <div class="case-gallery-item">
+                                <img src="./resources/images/for-testers.webp"
+                                    alt="Flannel shirts for Programming Store" loading="lazy">
+                            </div>
+                            <div class="case-gallery-item">
+                                <img src="./resources/images/for-ux.webp" alt="Flannel shirts for Programming Store" loading="lazy">
+                            </div>
+                            <div class="case-gallery-item">
+                                <img src="./resources/images/for-testers.webp"
+                                    alt="Flannel shirts for Programming Store" loading="lazy">
                             </div>
                             <button class="slider-arrow next"><img src="./resources/icons/case-slider-btn.svg"
                                     alt="Next"></button>
@@ -928,78 +983,19 @@
                         </div>
                         <div class="case-gallery">
                             <div class="case-gallery-item">
-                                <img src="./resources/images/for-analitics.png"
-                                    alt="Flannel shirts for Programming Store">
+                                <img src="./resources/images/for-analitics.webp"
+                                    alt="Flannel shirts for Programming Store" loading="lazy">
                             </div>
                             <div class="case-gallery-item">
-                                <img src="./resources/images/for-testers.png"
-                                    alt="Flannel shirts for Programming Store">
+                                <img src="./resources/images/for-testers.webp"
+                                    alt="Flannel shirts for Programming Store" loading="lazy">
                             </div>
                             <div class="case-gallery-item">
-                                <img src="./resources/images/for-ux.png" alt="Flannel shirts for Programming Store">
+                                <img src="./resources/images/for-ux.webp" alt="Flannel shirts for Programming Store" loading="lazy">
                             </div>
                             <div class="case-gallery-item">
-                                <img src="./resources/images/for-testers.png"
-                                    alt="Flannel shirts for Programming Store">
-                            </div>
-                            <button class="slider-arrow next"><img src="./resources/icons/case-slider-btn.svg"
-                                    alt="Next"></button>
-                            <button class="slider-arrow prev"><img src="./resources/icons/case-slider-btn.svg"
-                                    alt="Previous"></button>
-                            <div class="slider-controls">
-
-                                <div class="slider-dots"><span class="dot active"></span><span class="dot"></span><span
-                                        class="dot"></span></div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="case-card uc-leftscroll">
-                        <div class="case-content">
-                            <h3>Фланелевые рубашки с вышивкой для Programming Store</h3>
-                            <p class="case-description">Programming Store решили доверить нам одеть своих
-                                разработчиков,
-                                стояла задача изготовить подарки коллегам на день рождения. Выбор пал на рубашку в
-                                фирменных
-                                цветах.</p>
-                            <div class="case-details">
-                                <div class="green-bg-with-gradient case-badge"> <img
-                                        src="./resources/icons/case-strike.svg" alt="" class="case-icon">Задачи
-                                    кейса</div>
-                                <ul>
-                                    <li>— Создать ненавязчивый элемент гардероба, отражающий фирменный концепт</li>
-                                    <li>— Использовать нестандартные технологии</li>
-                                    <li>— Реализовать практичную и современную вещь, которую удобно носить</li>
-                                </ul>
-                            </div>
-                            <div class="case-details">
-                                <div class="green-bg-with-gradient case-badge"><img
-                                        src="./resources/icons/case-fire.svg" alt="" class="case-icon"> Результат
-                                </div>
-                                <ul>
-                                    <li>— Придумали изделия, которые отражают концепцию Programming Store</li>
-                                    <li>— Использовали разные инструменты брендинга - вышивку, фурнитуру</li>
-                                    <li>— Реализовали мерч, которые соответствует запросу клиента: необычный и
-                                        удобный</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="case-gallery">
-                            <div class="case-gallery-item">
-                                <img src="./resources/images/for-analitics.png"
-                                    alt="Flannel shirts for Programming Store">
-                            </div>
-                            <div class="case-gallery-item">
-                                <img src="./resources/images/for-testers.png"
-                                    alt="Flannel shirts for Programming Store">
-                            </div>
-                            <div class="case-gallery-item">
-                                <img src="./resources/images/for-ux.png" alt="Flannel shirts for Programming Store">
-                            </div>
-                            <div class="case-gallery-item">
-                                <img src="./resources/images/for-testers.png"
-                                    alt="Flannel shirts for Programming Store">
+                                <img src="./resources/images/for-testers.webp" 
+                                    alt="Flannel shirts for Programming Store" loading="lazy">
                             </div>
                             <button class="slider-arrow next"><img src="./resources/icons/case-slider-btn.svg"
                                     alt="Next"></button>
@@ -1023,16 +1019,16 @@
 
         <section class="comparison-section">
 
-            <img src="./resources/images/lamps.png" id="comparison-decoration-lamps">
+            <img src="./resources/images/lamps.webp" id="comparison-decoration-lamps" loading="lazy">
             <div class="container">
                 <h2 class="comparison-title"><span class="comparison-title-accent">Наши отличия</span> от остальных
                     компаний:</h2>
                 <div class="comparison-table">
 
-                    <img src="./resources/images/table-badge.png" alt="" id="comparison-decoration-table-badge">
-                    <img src="./resources/images/table.png" alt="" id="comparison-decoration-table">
-                    <img src="./resources/images/ball.png" alt="" id="comparison-decoration-ball">
-                    <img src="./resources/images/sticks.png" alt="" id="comparison-decoration-sticks">
+                    <img src="./resources/images/table-badge.webp" alt="" id="comparison-decoration-table-badge" loading="lazy">
+                    <img src="./resources/images/table.webp" alt="" id="comparison-decoration-table" loading="lazy">
+                    <img src="./resources/images/ball.webp" alt="" id="comparison-decoration-ball" loading="lazy">
+                    <img src="./resources/images/sticks.webp" alt="" id="comparison-decoration-sticks" loading="lazy">
 
                     <div class="comparison-row">
                         <div class="comparison-row-header" style="border-top-left-radius: 45px;">
@@ -1178,14 +1174,16 @@
         <section class="final-cta-section" id="contact-form">
             <div class="container final-cta-container">
                 <div class="final-cta-image-left">
-                    <img src="./resources/images/timer/hands.png" alt="Hands holding a gift" id="hands-img">
-                    <img src="./resources/images/timer/wallet.png" alt="" class="timer-decoration" id="timer-wallet">
-                    <img src="./resources/images/timer/element.png" alt="" class="timer-decoration"
+                    <img src="./resources/images/timer/hands.webp" alt="Hands holding a gift" loading="lazy" id="hands-img">
+                    <img src="./resources/images/timer/wallet.webp" alt="" loading="lazy" class="timer-decoration" id="timer-wallet">
+                    <img src="./resources/images/timer/element.webp" alt="" loading="lazy" class="timer-decoration"
                         id="timer-decoration-element">
                 </div>
                 <div class="final-cta-content">
-                    <h2 class="final-cta-title">Готовы уже завтра<br>подобрать подарки, которые<br> <span
-                            class="final-cta-title-accent">гарантированно повысят лояльность?</span></h2>
+                    <h2 class="final-cta-title">Готовы уже завтра<br>подобрать подарки, <span
+                            class="final-cta-mobile-small">
+                            которые<br> <span class="final-cta-title-accent">гарантированно повысят лояльность?</span>
+                        </span></h2>
                     <div class="countdown-timer">
                         <div class="timer-unit days">
                             <span class="timer-value">5</span>
@@ -1206,6 +1204,13 @@
                             <span class="timer-value">13</span>
                             <span class="timer-label">секунд</span>
                         </div>
+                    </div>
+                    <div class="final-cta-image-mobile">
+                        <img src="./resources/images/timer/hands.webp" loading="lazy" alt="Hands holding a gift" id="hands-img">
+                        <img src="./resources/images/timer/wallet.webp" loading="lazy" alt="" class="timer-decoration"
+                            id="timer-wallet">
+                        <img src="./resources/images/timer/element.webp" loading="lazy" alt="" class="timer-decoration"
+                            id="timer-decoration-element">
                     </div>
                     <div class="final-cta-buttons">
                         <div class="cta-group">
@@ -1235,7 +1240,7 @@
                         <summary class="faq-question">
                             Почему подарки именно для IT и EdTech?
                             <span class="faq-icon">
-                                <img src="./resources/icons/blue-arrow.png" alt="">
+                                <img src="./resources/icons/blue-arrow.webp" alt="">
                             </span>
                         </summary>
                         <div class="faq-answer">
@@ -1248,7 +1253,7 @@
                         <summary class="faq-question">
                             Что если подарки не понравятся сотрудникам?
                             <span class="faq-icon">
-                                <img src="./resources/icons/blue-arrow.png" alt="">
+                                <img src="./resources/icons/blue-arrow.webp" alt="">
                             </span>
                         </summary>
                         <div class="faq-answer">
@@ -1261,7 +1266,7 @@
                         <summary class="faq-question">
                             Как вы гарантируете сроки перед Новым годом?
                             <span class="faq-icon">
-                                <img src="./resources/icons/blue-arrow.png" alt="">
+                                <img src="./resources/icons/blue-arrow.webp" alt="">
                             </span>
                         </summary>
                         <div class="faq-answer">
@@ -1274,7 +1279,7 @@
                         <summary class="faq-question">
                             Что входит в стоимость?
                             <span class="faq-icon">
-                                <img src="./resources/icons/blue-arrow.png" alt="">
+                                <img src="./resources/icons/blue-arrow.webp" alt="">
                             </span>
                         </summary>
                         <div class="faq-answer">
@@ -1289,10 +1294,10 @@
         <footer class="site-footer-bottom" id="contact">
             <div class="container footer-container">
                 <div class="footer-col footer-logo-contact">
-                    <a href="#" class="footer-logo"><img src="./resources/images/logo.png" alt="Hilari Logo"></a>
+                    <a href="#" class="footer-logo"><img src="./resources/images/logo.webp" alt="Hilari Logo" loading="lazy"></a>
                     <div class="footer-phone-holder">
                         <a href="#" class="footer-social-icon"><img src="./resources/icons/phone-icon.svg"
-                                alt="Social Icon"></a>
+                                alt="Social Icon" loading="lazy"></a>
                         <a href="tel:+79054773270" class="footer-phone">+7 (905) 477-32-70</a>
                     </div>
                 </div>
@@ -1302,7 +1307,7 @@
                     <a href="#cases">Кейсы</a>
                 </div>
                 <div class="footer-col footer-legal">
-                    <a href="#">Политика конфиденциальности</a>
+                    <a href="https://docs.google.com/document/d/1y6-oir2m8mmt6scXz8cM3PT3pfDZEEbt/edit" target="_blank">Политика конфиденциальности</a>
                     <a href="https://hilari.ru/kontakty" target="_blank">Договор-оферта</a>
                 </div>
                 <div class="footer-col footer-cta">
@@ -1316,7 +1321,7 @@
                 <div id="contact-form" class="contact-form-section light-blue">
                     <div class="contact-form-wrapper">
                         <span class="close">
-                            <img src="./resources/icons/form-cross.svg" alt="">
+                            <img src="./resources/icons/form-cross.svg" alt="" loading="lazy">
                         </span>
 
                         <div class="form-container">
@@ -1374,7 +1379,7 @@
                                 </div>
 
                                 <button type="submit" class="submit-btn btn btn-primary">Отправить
-                                    <img src="./resources/icons/finger-icon.svg" alt="" class="hero-cta-icon">
+                                    <img src="./resources/icons/finger-icon.svg" alt="" class="hero-cta-icon" >
                                 </button>
 
                                 <p class="agreement-text">
@@ -1387,10 +1392,10 @@
 
                         <div class="images-container">
                             <div class="image-top">
-                                <img src="./resources/images/contact-form1.png" alt="Изображение 1">
+                                <img src="./resources/images/contact-form1.webp" alt="Изображение 1" loading="lazy">
                             </div>
                             <div class="image-bottom">
-                                <img src="./resources/images/contact-form2.png" alt="Изображение 2">
+                                <img src="./resources/images/contact-form2.webp" alt="Изображение 2" loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -1398,7 +1403,7 @@
             </div>
         </div>
 
-    
+
     </div>
 
 </body>
@@ -1410,7 +1415,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
 <script>
-    $(window).on('load', function () {
+    $(function () {
         initMagicScroll();
     });
 
@@ -1503,4 +1508,5 @@
     }
 
 </script>
+
 </html>

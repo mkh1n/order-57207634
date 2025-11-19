@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     class HeaderManager {
         constructor() {
             this.header = document.getElementById('header');
+            this.mobileMenu = document.getElementById('mob');
             this.lastScrollY = window.scrollY;
             this.isHidden = false;
             this.ticking = false;
@@ -42,6 +43,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!this.isHidden) {
                     this.header.classList.add('hidden');
                     this.isHidden = true;
+                    if (this.mobileMenu){
+                this.mobileMenu.classList.remove('active');
+            }
                 }
             } 
             // Показываем хедер при скролле вверх или вверху страницы
@@ -62,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         hide() {
             this.header.classList.add('hidden');
+            
             this.isHidden = true;
         }
         
@@ -254,15 +259,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         };
-        
-        console.log('=== ALL SYSTEMS READY ===');
-        console.log('Debug commands available:');
-        console.log('- debugHeader.show() - show header');
-        console.log('- debugHeader.hide() - hide header');
-        console.log('- debugHeader.getState() - get header state');
-        console.log('- debugHeader.getSections() - get available sections');
-        console.log('- debugHeader.getActiveSection() - get active section');
-        console.log('- debugHeader.testScroll("section-id") - test scroll to section');
         
     } catch (error) {
         console.error('Initialization error:', error);
