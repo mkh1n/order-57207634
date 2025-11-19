@@ -146,11 +146,12 @@
                                     вариантами подарков на </span>
                             </span>
                             <span id="changable-present-quiz-word" class="quiz-title-mobile-small">Новый год</span>
-                            <div class="quiz-badge green-bg-with-gradient">
+                            
+                        </h2>
+                        <div class="quiz-badge green-bg-with-gradient">
                                 <img src="./resources/images/gift-box.webp" alt="Gift icon" class="quiz-badge-icon" loading="lazy">
                                 <p>Под ваш бюджет и сроки!</p>
                             </div>
-                        </h2>
                     </div>
                     <div class="quiz-holder light-blue">
                         <div class="quiz-progress">
@@ -453,12 +454,12 @@
             <div class="container">
                 <h2 class="catalog-title">Каталог <span class="catalog-title-regular">подарков</span></h2>
                 <div class="catalog-filters">
-                    <a href="#" class="btn btn-secondary catalog-filter">Подарки по поводам</a>
-                    <a href="#" class="btn btn-secondary catalog-filter active ">Подарки по ролям</a>
-                    <a href="#" class="btn btn-secondary catalog-filter">Подарки по бюджету</a>
+                    <a class="btn btn-secondary catalog-filter" data-catalog="catalog1">Подарки по поводам</a>
+                    <a class="btn btn-secondary catalog-filter active" data-catalog="catalog2">Подарки по ролям</a>
+                    <a class="btn btn-secondary catalog-filter" data-catalog="catalog3">Подарки по бюджету</a>
                 </div>
 
-                <div class="catalog-grid">
+                <div class="catalog-grid" id="catalog1">
                     <div class="product-card-wrapper uc-leftscroll">
                         <div class="product-card ">
                             <img src="./resources/images/for-analitics.webp" alt="Подарочный набор для аналитиков"
@@ -505,6 +506,110 @@
                                     src="./resources/icons/finger-icon.svg" alt=""></button>
                         </div>
                     </div>
+
+
+                </div>
+                <div class="catalog-grid active" id="catalog2">
+                    
+                    <div class="product-card-wrapper  uc-leftscroll">
+                        <div class="product-card">
+                            <img src="./resources/images/for-ux.webp" alt="Подарочный набор для дизайнеров"
+                                class="product-image" loading="lazy">
+                            <div class="product-tag green-bg-with-gradient">Для дизайнеров UX</div>
+                            <div class="product-info">
+                                <p class="product-description">Состав набора: скетчбук в деревянной обложке, набор
+                                    маркеров для
+                                    скетчинга, флисовый мягкий плед</p>
+
+                            </div>
+                            <button class="btn btn-primary product-cta open-form">Рассчитать стоимость <img
+                                    src="./resources/icons/finger-icon.svg" alt=""></button>
+                        </div>
+                    </div>
+
+                    <div class="product-card-wrapper uc-leftscroll">
+                        <div class="product-card ">
+                            <img src="./resources/images/for-analitics.webp" alt="Подарочный набор для аналитиков"
+                                class="product-image" loading="lazy">
+                            <div class="product-tag green-bg-with-gradient ">Для аналитиков</div>
+                            <div class="product-info">
+                                <p class="product-description">Состав набора: свитшот с пинч-эффектом, магнитные
+                                    шахматы,
+                                    повербанк</p>
+
+                            </div>
+                            <button class="btn btn-primary product-cta open-form">Рассчитать стоимость <img
+                                    src="./resources/icons/finger-icon.svg" alt=""></button>
+                        </div>
+                    </div>
+
+                    <div class="product-card-wrapper uc-leftscroll">
+                        <div class="product-card ">
+                            <img src="./resources/images/for-testers.webp" alt="Подарочный набор для тестировщиков"
+                                class="product-image" loading="lazy">
+                            <div class="product-tag green-bg-with-gradient">Для тестировщиков</div>
+                            <div class="product-info">
+                                <p class="product-description">Состав набора: стильный рюкзак для ноутбука, блокнот в
+                                    деревянной
+                                    обложке, кружка с надписью</p>
+
+                            </div>
+                            <button class="btn btn-primary product-cta open-form">Рассчитать стоимость <img
+                                    src="./resources/icons/finger-icon.svg" alt=""></button>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="catalog-grid" id="catalog3">
+                    <div class="product-card-wrapper uc-leftscroll">
+                        <div class="product-card ">
+                            <img src="./resources/images/for-testers.webp" alt="Подарочный набор для тестировщиков"
+                                class="product-image" loading="lazy">
+                            <div class="product-tag green-bg-with-gradient">Для тестировщиков</div>
+                            <div class="product-info">
+                                <p class="product-description">Состав набора: стильный рюкзак для ноутбука, блокнот в
+                                    деревянной
+                                    обложке, кружка с надписью</p>
+
+                            </div>
+                            <button class="btn btn-primary product-cta open-form">Рассчитать стоимость <img
+                                    src="./resources/icons/finger-icon.svg" alt=""></button>
+                        </div>
+                    </div>
+                    <div class="product-card-wrapper  uc-leftscroll">
+                        <div class="product-card">
+                            <img src="./resources/images/for-ux.webp" alt="Подарочный набор для дизайнеров"
+                                class="product-image" loading="lazy">
+                            <div class="product-tag green-bg-with-gradient">Для дизайнеров UX</div>
+                            <div class="product-info">
+                                <p class="product-description">Состав набора: скетчбук в деревянной обложке, набор
+                                    маркеров для
+                                    скетчинга, флисовый мягкий плед</p>
+
+                            </div>
+                            <button class="btn btn-primary product-cta open-form">Рассчитать стоимость <img
+                                    src="./resources/icons/finger-icon.svg" alt=""></button>
+                        </div>
+                    </div>
+
+                    <div class="product-card-wrapper uc-leftscroll">
+                        <div class="product-card ">
+                            <img src="./resources/images/for-analitics.webp" alt="Подарочный набор для аналитиков"
+                                class="product-image" loading="lazy">
+                            <div class="product-tag green-bg-with-gradient ">Для аналитиков</div>
+                            <div class="product-info">
+                                <p class="product-description">Состав набора: свитшот с пинч-эффектом, магнитные
+                                    шахматы,
+                                    повербанк</p>
+
+                            </div>
+                            <button class="btn btn-primary product-cta open-form">Рассчитать стоимость <img
+                                    src="./resources/icons/finger-icon.svg" alt=""></button>
+                        </div>
+                    </div>
+                    
+                    
 
 
                 </div>

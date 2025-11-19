@@ -347,3 +347,22 @@ document.addEventListener('DOMContentLoaded', function() {
         new CaseGallery(section);
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.catalog-filter');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Убираем активный класс у всех кнопок и галерей
+            document.querySelectorAll('.catalog-filter.active').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.catalog-grid.active').forEach(gallery => gallery.classList.remove('active'));
+            
+            // Добавляем активный класс текущей кнопке
+            this.classList.add('active');
+            
+            // Показываем выбранную галерею
+            const galleryId = this.getAttribute('data-catalog');
+            document.getElementById(galleryId).classList.add('active');
+        });
+    });
+});

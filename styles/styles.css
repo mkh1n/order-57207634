@@ -155,6 +155,7 @@ p {
     color: var(--color-text-black);
     border-bottom: 0.25rem solid #0097B1;
     font-size: 1.3rem;
+    transition: 0.3s;
 }
 
 
@@ -172,7 +173,8 @@ p {
 }
 
 .btn-primary:hover {
-    opacity: 0.9;
+    background: radial-gradient(173.07% 205.27% at 50% 50%, #00a1ba 0%, #23b7ce 100%);
+    box-shadow: 0 0.875rem 2.125rem 0 rgba(0, 190, 221, 0.3);
 }
 
 .btn-secondary {
@@ -180,8 +182,12 @@ p {
     background: linear-gradient(45deg, #28c0d7 0%, #52e8ff 100%);
     font-weight: 400;
     color: var(--color-text-black);
+    transition: 0.3s;
 }
-
+.btn-secondary:hover{
+    background: linear-gradient(45deg, #25b8ce 0%, #15dcfb 100%);
+    box-shadow: 0 0.875rem 2.125rem 0 rgba(0, 190, 221, 0.3);
+}
 .btn-secondary::after {
     content: '';
     position: absolute;
@@ -420,8 +426,11 @@ p {
     font-size: 0.75rem;
     color: var(--color-text-light);
     text-decoration: underline;
+    transition: 0.3s;
 }
-
+.callback-link:hover{
+    color: rgb(69, 69, 69);
+}
 .social-icons {
     display: flex;
     gap: 0.5rem;
@@ -436,6 +445,11 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 0.3s;
+}
+.social-icons a:hover{
+        box-shadow: 0 0.313rem 0.938rem rgba(102, 126, 234, 0.1);
+
 }
 .social-icons a img{
     width: 100%;
@@ -719,8 +733,10 @@ p {
 .quiz-text-content {
     display: flex;
     align-items: flex-start;
+    flex-direction: column;
     gap: 1.875rem;
     max-width: 43.75rem;
+    margin-bottom: 45px;
 }
 
 .quiz-title {
@@ -733,11 +749,7 @@ p {
     margin-bottom: 2rem;
     text-align: left;
     max-width: 40.625rem;
-    height: 20rem;
-}
-
-.quiz-title p {
-    margin-right: 0.625rem;
+    margin: 0;
 }
 
 .quiz-badge {
@@ -750,7 +762,6 @@ p {
     height: 4.063rem;
     padding: 0 1.063rem;
     vertical-align: middle;
-    margin-left: 0.625rem;
 }
 
 .quiz-title-accent {
@@ -1162,6 +1173,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     min-height: 62.5rem;
     scrollbar-width: none;
     scrollbar-color: #ccc transparent;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    position: absolute;
+    width: 100%;
+}
+.catalog-grid.active {
+  opacity: 1;
+    visibility: visible;
+    position: relative;
 }
 
 .product-card-wrapper {
@@ -2355,6 +2377,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: flex;
     gap: 0.75rem;
 }
+.social-links a{
+    transition: 0.3s;
+    border-radius: 100%;
+}
+.social-links a:hover{
+    filter: brightness(0.8);}
 
 /* ===== FAQ SECTION ===== */
 .faq-section {
@@ -2447,7 +2475,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     gap: 0.5rem;
     flex-direction: column;
 }
-
+.footer-col a{
+    transition: 0.3s;
+}
+.footer-col a:hover{
+    color: #000000;
+    text-decoration: underline;
+}
 .footer-logo-contact {
     gap: 1.875rem;
     align-items: flex-start;
@@ -2878,7 +2912,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     :root {
         --base-font-size: 1vw;
     }
-
+    .main-nav{
+        display: none;
+    }
+    .hero-image-wrapper{
+        right: -40%;
+    }
     .hero-container {
         flex-direction: column;
         text-align: center;
@@ -2910,12 +2949,27 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
     .reasons-content-wrapper {
         flex-direction: column;
+        align-items: center;
     }
-
+    .reasons-left {
+        margin-bottom: 50px;
+    }
+    .reliability-card:nth-child(7) .reliability-bg{
+        width: 40%;
+    }
+    .case-content,.case-gallery {
+        width: 100%;
+    }
+        .case-card {
+        flex-direction: column;
+        padding: 50px;
+    }
     .final-cta-container {
         flex-direction: column;
     }
-
+    .comparison-row div{
+        max-width: 250px;
+    }
     .footer-container {
         flex-wrap: wrap;
         gap: 2.5rem;
@@ -2945,6 +2999,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         flex: 1;
         height: 18.75rem;
     }
+    #hands-img {
+        height: 100%;
+    width: 146%;
+    position: relative;
+    left: -13.25rem;
+    }
+
 }
 
 /* ===== TABLET (1024px and below) ===== */
@@ -2961,10 +3022,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         grid-column: 1 / 3;
     }
 
-    .case-card {
-        flex-direction: column;
-        padding: 1.875rem;
-    }
+
 
     .case-gallery {
         margin-left: 0;
