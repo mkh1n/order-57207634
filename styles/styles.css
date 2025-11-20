@@ -2863,12 +2863,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     z-index: -1;
 }
 
-#comparison-decoration-lamps {
+#comparison-decoration-lamps, #cases-decoration-lamps {
     position: absolute;
     width: 148vw;
     z-index: -1;
     left: 50%;
     transform: translate(-48%, -12%);
+}
+#cases-decoration-lamps{
+    display: none;
 }
 
 #comparison-decoration-table {
@@ -2945,6 +2948,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
     .quiz-text-content {
         text-align: center;
+        align-items: center;
     }
 
     .reasons-content-wrapper {
@@ -3000,12 +3004,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         height: 18.75rem;
     }
     #hands-img {
-        height: 100%;
-    width: 146%;
-    position: relative;
-    left: -13.25rem;
+               margin-top: -70px;
+        height: 105%;
+        width: 167%;
+        position: relative;
+        left: -13.25rem;
     }
-
+    #timer-decoration-element{
+        top: -15%;
+        bottom: unset;
+    }
 }
 
 /* ===== TABLET (1024px and below) ===== */
@@ -3152,6 +3160,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
     .hero-footnote-mobile {
         display: block;
+        font-size: 12px;
+        padding: 0 54px;
     }
 
     .hero-cta-mobile {
@@ -3240,7 +3250,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         right: -14.75rem;
         bottom: -9.5rem;
     }
-
+    .quiz-text-content{
+        margin-bottom: 20px;
+    }
     .quiz-title {
         font-size: 32px;
         width: 100%;
@@ -3273,7 +3285,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     }
 
     .quiz-title {
-        margin-bottom: 37px;
+        margin-bottom: 5px;
     }
 
     .progress-title {
@@ -3330,7 +3342,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .catalog-filter {
         padding: 13px;
         width: auto;
-        margin-bottom: 22px;
+        margin-bottom: 5px;
     }
 
     .product-card {
@@ -3418,7 +3430,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         grid-row: 6 / 7;
         margin-bottom: 40px;
     }
-
+    .approach-section{
+            padding-bottom: 38px;
+    }
     .approach-section::after {
         background: none;
     }
@@ -3553,6 +3567,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
     .reliability-card:nth-child(2) {
         order: 6;
+        margin-top: -50px;
     }
 
     .reliability-card:nth-child(5) {
@@ -3561,26 +3576,35 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
     .reliability-card:nth-child(3) {
         order: 7;
+        margin-top: -50px;
     }
 
     .reliability-cta {
         order: 9;
         width: 100%;
         box-sizing: border-box;
+        margin-top: -45px;
     }
 
     .reliability-grid {
         grid-template-columns: 1fr;
+        gap: 70px;
     }
 
     .reliability-card.final {
         grid-column: 1;
+        flex-direction: column;
     }
-
+.reliability-card:nth-child(7) .reliability-bg{
+    width: 100%;
+}
     .approach-card:nth-child(7) {
         grid-column: 1;
     }
-
+    .cases-section{
+        padding-top: 0;
+        margin-top: -40px;
+    }
     .cases-title {
         font-size: 31px;
     }
@@ -3737,6 +3761,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     #comparison-decoration-lamps {
         display: none;
     }
+    #cases-decoration-lamps{
+        display: block;
+            position: absolute;
+    width: 239vw;
+    z-index: -1;
+    rotate: -1deg;
+    left: 50%;
+    transform: translate(-48%, -18%);
+    }
 
     #comparison-decoration-table-badge {
         position: absolute;
@@ -3816,6 +3849,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .faq-question {
         padding: 14px 22px;
         font-size: 16px;
+        gap: 20px;
     }
 
     .faq-icon {
@@ -3887,8 +3921,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     :root {
         --base-font-size: 2.5vw;
     }
+
     .table-container{
-                bottom: -159%;
+                bottom: -170%;
     }
     .hero-image-wrapper{
         right: -23%;
@@ -3898,11 +3933,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
             width: 100%;
         }
         .hero-section{
-            padding-bottom: 430px;
+            padding-bottom: 495px;
         }
 }
 @media (max-width: 380px){
+            #hero-decoration-tape1 {
+
+        left: 123px;
+        top: 120px;
+    }
         .table-container {
-        bottom: -135%;
+        bottom: -145%;
     }
 } 
