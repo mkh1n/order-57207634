@@ -1523,10 +1523,17 @@
 <script>
     $(function () {
         initMagicScroll();
+        
+        let resizeTimeout;
+        $(window).on('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(function() {
+                location.reload(); // Просто перезагружаем страницу
+            }, 500);
+        });
     });
 
     function initMagicScroll() {
-
         const scrollElements = $('.uc-rightscroll, .uc-leftscroll');
 
         if (scrollElements.length === 0) {
@@ -1552,45 +1559,29 @@
                 }
             });
         });
-        const map = {};
+
+        const controller = new ScrollMagic.Controller();
 
         for (let group of groups) {
             const id = 'uc' + Date.now() + Math.random().toString(36).substr(2, 9);
-            map[id] = group;
 
-            // Определяем реальную ширину элементов
-            const itemWidth = group.$els.first().outerWidth(true); // учитываем margin/padding
-            const gap = 30; // ваш gap
-            const totalItemsWidth = (itemWidth * group.$els.length) + (gap * (group.$els.length - 1));
-            const scrollableWidth = totalItemsWidth - window.innerWidth;
-
-            // Рассчитываем смещение в процентах
-            const scrollPercentage = (scrollableWidth / totalItemsWidth) * 100;
-
-            const extraStyle = group.options.dir === 'right' ?
-                `left: -${scrollableWidth}px; flex-direction: row-reverse;` : '';
-
-            // Обертываем с правильными размерами
-            group.$els
-                .css({
-                    'flex': `0 0 ${itemWidth}px`,
-                    'margin-right': `${gap}px`
-                })
-                .wrapAll(`<div id="pin-${id}" style="overflow: hidden; width: 100vw; height: 100vh;">
-                          <div id="${id}" style="display: flex; width: ${totalItemsWidth}px; height: 100%; position: relative; ${extraStyle}"></div></div>`);
-
-            // Убираем margin у последнего элемента
-            group.$els.last().css('margin-right', '0');
-        }
-
-        const controller = new ScrollMagic.Controller();
-        for (let id in map) {
-            const group = map[id];
             const itemWidth = group.$els.first().outerWidth(true);
             const gap = 30;
             const totalItemsWidth = (itemWidth * group.$els.length) + (gap * (group.$els.length - 1));
             const scrollableWidth = totalItemsWidth - window.innerWidth;
             const scrollPercentage = (scrollableWidth / totalItemsWidth) * 100;
+
+            const extraStyle = group.options.dir === 'right' ?
+                `left: -${scrollableWidth}px; flex-direction: row-reverse;` : '';
+
+            group.$els
+                .css({
+                    'margin-right': `${gap}px`
+                })
+                .wrapAll(`<div id="pin-${id}" style="overflow: hidden; width: 100vw; height: 100vh;">
+                          <div id="${id}" style="display: flex; width: ${totalItemsWidth}px; height: 100%; position: relative; ${extraStyle}"></div></div>`);
+
+            group.$els.last().css('margin-right', '0');
 
             const sign = (group.options.dir === 'left') ? '-' : '';
 
@@ -1599,7 +1590,6 @@
                 ease: "none"
             });
 
-            // Длительность пропорциональна количеству прокручиваемого контента
             const duration = (totalItemsWidth / window.innerWidth) * 100;
 
             new ScrollMagic.Scene({
@@ -1612,7 +1602,6 @@
                 .addTo(controller);
         }
     }
-
 </script>
 
 </html>
